@@ -1,0 +1,9 @@
+moscow_russia.osm
+nodes.xml
+ways.xml
+open_big_xml.bat
+TestLeaflet/bin/
+
+TestLeaflet/obj/
+
+TestLeaflet.v11.suo

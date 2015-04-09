@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="OSM_Data_DB" Class="OSMDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=Никита-ПК;Initial Catalog=OSM_Data_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="OSM_Data_DBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Nodes" Member="Nodes">
+    <Type Name="Nodes">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NodeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Latitude" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Longitude" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Association Name="Nodes_NodeTags" Member="NodeTags" ThisKey="NodeID" OtherKey="NodeID" Type="NodeTags" />
+      <Association Name="Nodes_WayNodes" Member="WayNodes" ThisKey="NodeID" OtherKey="NodeID" Type="WayNodes" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NodeTags" Member="NodeTags">
+    <Type Name="NodeTags">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NodeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TagName" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="TagValue" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Nodes_NodeTags" Member="Nodes" ThisKey="NodeID" OtherKey="NodeID" Type="Nodes" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WayNodes" Member="WayNodes">
+    <Type Name="WayNodes">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WayID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="NodeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Nodes_WayNodes" Member="Nodes" ThisKey="NodeID" OtherKey="NodeID" Type="Nodes" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Ways_WayNodes" Member="Ways" ThisKey="WayID" OtherKey="WayID" Type="Ways" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ways" Member="Ways">
+    <Type Name="Ways">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WayID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Ways_WayNodes" Member="WayNodes" ThisKey="WayID" OtherKey="WayID" Type="WayNodes" />
+      <Association Name="Ways_WayTags" Member="WayTags" ThisKey="WayID" OtherKey="WayID" Type="WayTags" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WayTags" Member="WayTags">
+    <Type Name="WayTags">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WayID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TagName" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="TagValue" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Ways_WayTags" Member="Ways" ThisKey="WayID" OtherKey="WayID" Type="Ways" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>
