@@ -40,5 +40,8 @@ namespace TestLeaflet.Models
 
         public List<Point> Points { get; private set; }
         public String RoadType { get; set; }
+        public Int32 Lanes { get; set; }
+        public Boolean Oneway { get; set; }
+        public String Name { get; set; }
     }
 }
