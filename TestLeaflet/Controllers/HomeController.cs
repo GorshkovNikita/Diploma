@@ -22,8 +22,8 @@ namespace TestLeaflet.Controllers
             }*/
             //XmlHelper.CreateNewXmlWithNodes();
             //XmlHelper.CreateNewXmlWithWays();
-            XmlHelper.AddNodesInDBFromXml();
-            XmlHelper.AddWaysInDBFromXml();
+            //XmlHelper.AddNodesInDBFromXml();
+            //XmlHelper.AddWaysInDBFromXml();
             //double dist = Distance.Calc(new Point(55.590775, 37.599965), new Point(55.629260, 37.618345));
             //OSMWay way = OSMWay.Create(323996078);
             //OSMNode node = OSMNode.Create(26609007);

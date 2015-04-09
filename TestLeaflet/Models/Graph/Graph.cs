@@ -12,7 +12,7 @@ namespace TestLeaflet.Models
         {
             client = new GraphClient(new Uri("http://localhost:7474/db/data"));
             client.Connect();
-            //CreateNodesRelationshipsIndexes();  
+            //CreateNodesRelationshipsIndexes();
         }
 
         private GraphClient client;

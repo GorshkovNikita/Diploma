@@ -35,12 +35,10 @@ namespace TestLeaflet.Models
                 }
                 return Length;
             }
-            private set
-            {
-
-            }
+            private set { Length = value; }
         }
 
         public List<Point> Points { get; private set; }
+        public String RoadType { get; set; }
     }
 }
