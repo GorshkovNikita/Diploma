@@ -49,8 +49,8 @@ namespace TestLeaflet.Models
                              select new { nodeCoord.Latitude, nodeCoord.Longitude };
             foreach (var nc in nodeCoords)
             {
-                node.Latitude = Convert.ToDouble(nc.Latitude);
-                node.Longitude = Convert.ToDouble(nc.Longitude);
+                node.Latitude = nc.Latitude;
+                node.Longitude = nc.Longitude;
             }
             var nodeTags = from nodeTag in DBConnection.OSMDB.NodeTags
                            where nodeTag.NodeID == node.ID

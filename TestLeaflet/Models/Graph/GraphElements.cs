@@ -8,10 +8,12 @@ namespace TestLeaflet.Models
 {
     public class GraphNode
     {
-        public GraphNode()
+        public GraphNode(Point point)
         {
-
+            this.Point = point;
         }
+
+        public Point Point { get; private set; }
     }
 
     public class GraphEdge : Relationship, IRelationshipAllowingSourceNode<GraphNode>,
@@ -32,7 +34,7 @@ namespace TestLeaflet.Models
     {
         public GraphEdgeData(Line line)
         {
-            Line = line;
+            this.Line = line;
         }
 
         public Line Line { get; private set; }

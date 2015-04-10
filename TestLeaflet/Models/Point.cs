@@ -16,6 +16,12 @@ namespace TestLeaflet.Models
             this.Longitude = lon;
         }
 
+        public Point(OSMNode node)
+        {
+            this.Latitude = node.Latitude;
+            this.Longitude = node.Longitude;
+        }
+
         public Double Latitude { get; set; }
         public Double Longitude { get; set; }
     }

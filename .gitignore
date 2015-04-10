@@ -6,3 +6,4 @@ TestLeaflet/bin/
 TestLeaflet/obj/
 TestLeaflet.v11.suo
 OSM_Data_DB
+TestLeaflet/Web.config
