@@ -7,7 +7,6 @@ namespace TestLeaflet.Models
 {
     public class DBConnection
     {
-
         public static OSMDataClassesDataContext OSMDB 
         {
             get
