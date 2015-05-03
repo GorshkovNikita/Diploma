@@ -35,19 +35,15 @@ namespace TestLeaflet.Models
         public static OSMWay Create(Int64 id)
         {
             OSMWay way = new OSMWay(id);
-            var wayTags = from wayTag in DBConnection.OSMDB.WayTags
-                          where wayTag.WayID == way.ID
-                          select new { wayTag.TagName, wayTag.TagValue };
-            foreach (var wt in wayTags)
+            List<WayNode> wn = DBConnection.OSMDB.WayNodes.Where(waynode => waynode.WayID == way.ID).ToList();
+            foreach (var node in wn)
             {
-                way.Tags.Add(wt.TagName, wt.TagValue);
+                way.RefNodes.Add(node.NodeID);
             }
-            var wayNodes = from wayNode in DBConnection.OSMDB.WayNodes
-                           where wayNode.WayID == way.ID
-                           select wayNode.NodeID;
-            foreach (long wn in wayNodes)
+            List<WayTag> wt = DBConnection.OSMDB.WayTags.Where(waytag => waytag.WayID == way.ID).ToList();
+            foreach (var tag in wt)
             {
-                way.RefNodes.Add(wn);
+                way.Tags.Add(tag.TagName, tag.TagValue);
             }
             return way;
         }

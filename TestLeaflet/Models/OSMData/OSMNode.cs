@@ -44,7 +44,7 @@ namespace TestLeaflet.Models
         public static OSMNode Create(Int64 id)
         {
             OSMNode node = new OSMNode(id);
-            Node n = DBConnection.OSMDB.Nodes.Where(nd => nd.ID == node.ID).First();
+            Node n = DBConnection.OSMDB.Nodes.Where(nd => nd.NodeID == node.ID).First();
             node.Latitude = n.Latitude;
             node.Longitude = n.Longitude;
             List<NodeTag> nt = DBConnection.OSMDB.NodeTags.Where(ndtag => ndtag.NodeID == node.ID).ToList();
