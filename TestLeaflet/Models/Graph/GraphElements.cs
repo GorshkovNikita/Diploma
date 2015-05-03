@@ -6,22 +6,12 @@ using Neo4jClient;
 
 namespace TestLeaflet.Models
 {
-    public class GraphNode
-    {
-        public GraphNode(Point point)
-        {
-            this.Point = point;
-        }
-
-        public Point Point { get; private set; }
-    }
-
-    public class GraphEdge : Relationship, IRelationshipAllowingSourceNode<GraphNode>,
-    IRelationshipAllowingTargetNode<GraphNode>
+    public class GraphEdge : Relationship, IRelationshipAllowingSourceNode<Point>,
+    IRelationshipAllowingTargetNode<Point>
     {
         public static readonly string TypeKey = "road";
 
-        public GraphEdge(NodeReference targetNode, GraphEdgeData data): base(targetNode, data)
+        public GraphEdge(NodeReference targetNode, Line data): base(targetNode, data)
         { }
   
         public override string RelationshipTypeKey
@@ -30,13 +20,4 @@ namespace TestLeaflet.Models
         }
     }
 
-    public class GraphEdgeData
-    {
-        public GraphEdgeData(Line line)
-        {
-            this.Line = line;
-        }
-
-        public Line Line { get; private set; }
-    }
 }

@@ -10,6 +10,11 @@ namespace TestLeaflet.Models
     /// </summary>
     public class Point
     {
+        public Point()
+        {
+
+        }
+
         public Point(Double lat, Double lon)
         {
             this.Latitude = lat;
