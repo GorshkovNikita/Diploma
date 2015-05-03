@@ -60,5 +60,11 @@
         <classShapeMoniker Id="ccb8a4e1-a393-4866-9eb3-e8406c5b1d84" />
       </nodes>
     </associationConnector>
+    <classShape Id="54c1d72e-a46e-42a0-8672-7580574b5c79" absoluteBounds="0.5, 2.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/OSMDataClassesDataContext/AllGraphNode" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be690efe-57af-4378-8ba7-6b9b60ff2377" absoluteBounds="0.51499999999999968, 2.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

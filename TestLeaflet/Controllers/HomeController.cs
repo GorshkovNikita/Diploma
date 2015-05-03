@@ -27,7 +27,7 @@ namespace TestLeaflet.Controllers
             //double dist = Distance.Calc(new Point(55.590775, 37.599965), new Point(55.629260, 37.618345));
             //OSMWay way = OSMWay.Create(323996078);
             //OSMNode node = OSMNode.Create(26609007);
-            Graph graph = new Graph();
+            //Graph graph = new Graph();
             return View();
         }
     }

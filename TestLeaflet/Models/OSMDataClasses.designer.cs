@@ -116,6 +116,14 @@ namespace TestLeaflet.Models
 				return this.GetTable<WayTag>();
 			}
 		}
+		
+		public System.Data.Linq.Table<AllGraphNode> AllGraphNodes
+		{
+			get
+			{
+				return this.GetTable<AllGraphNode>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Nodes")]
@@ -988,6 +996,87 @@ namespace TestLeaflet.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AllGraphNodes")]
+	public partial class AllGraphNode
+	{
+		
+		private long _Way1;
+		
+		private long _Way2;
+		
+		private long _NodeID;
+		
+		private System.Nullable<long> _RowNum;
+		
+		public AllGraphNode()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Way1", DbType="BigInt NOT NULL")]
+		public long Way1
+		{
+			get
+			{
+				return this._Way1;
+			}
+			set
+			{
+				if ((this._Way1 != value))
+				{
+					this._Way1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Way2", DbType="BigInt NOT NULL")]
+		public long Way2
+		{
+			get
+			{
+				return this._Way2;
+			}
+			set
+			{
+				if ((this._Way2 != value))
+				{
+					this._Way2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NodeID", DbType="BigInt NOT NULL")]
+		public long NodeID
+		{
+			get
+			{
+				return this._NodeID;
+			}
+			set
+			{
+				if ((this._NodeID != value))
+				{
+					this._NodeID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RowNum", DbType="BigInt")]
+		public System.Nullable<long> RowNum
+		{
+			get
+			{
+				return this._RowNum;
+			}
+			set
+			{
+				if ((this._RowNum != value))
+				{
+					this._RowNum = value;
+				}
 			}
 		}
 	}

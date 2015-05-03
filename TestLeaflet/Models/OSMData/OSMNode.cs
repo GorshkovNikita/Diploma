@@ -44,20 +44,13 @@ namespace TestLeaflet.Models
         public static OSMNode Create(Int64 id)
         {
             OSMNode node = new OSMNode(id);
-            var nodeCoords = from nodeCoord in DBConnection.OSMDB.Nodes
-                             where nodeCoord.NodeID == node.ID
-                             select new { nodeCoord.Latitude, nodeCoord.Longitude };
-            foreach (var nc in nodeCoords)
+            Node n = DBConnection.OSMDB.Nodes.Where(nd => nd.ID == node.ID).First();
+            node.Latitude = n.Latitude;
+            node.Longitude = n.Longitude;
+            List<NodeTag> nt = DBConnection.OSMDB.NodeTags.Where(ndtag => ndtag.NodeID == node.ID).ToList();
+            foreach (var tag in nt)
             {
-                node.Latitude = nc.Latitude;
-                node.Longitude = nc.Longitude;
-            }
-            var nodeTags = from nodeTag in DBConnection.OSMDB.NodeTags
-                           where nodeTag.NodeID == node.ID
-                           select new { nodeTag.TagName, nodeTag.TagValue };
-            foreach (var wt in nodeTags)
-            {
-                node.Tags.Add(wt.TagName, wt.TagValue);
+                node.Tags.Add(tag.TagName, tag.TagValue);
             }
             return node;
         }

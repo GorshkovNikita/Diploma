@@ -45,4 +45,12 @@
       <Association Name="Way_WayTag" Member="Way" ThisKey="WayID" OtherKey="WayID" Type="Way" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.AllGraphNodes" Member="AllGraphNodes">
+    <Type Name="AllGraphNode">
+      <Column Name="Way1" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Way2" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="NodeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RowNum" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

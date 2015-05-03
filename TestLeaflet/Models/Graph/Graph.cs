@@ -19,9 +19,9 @@ namespace TestLeaflet.Models
         public void CreateNodes()
         {
             //Int32 rowNum = 0;
-            for (Int32 i = 2; i <= 104740; i += 2)
+            for (Int32 i = 2; i <= 20; i += 2)
             {
-                Int64 nodeID = DBConnection.OSMDB.ExecuteQuery<Int64>("SELECT TOP 1 [Way1], [Way2], [NodeID], [RowNum] FROM [OSM_Data_DB].[dbo].[AllGraphNodes] WHERE RowNum = {0}", i).First();
+                Int64 nodeID = DBConnection.OSMDB.AllGraphNodes.Where(node => node.RowNum == i).First().NodeID;
                 client.Create(new Point(OSMNode.Create(nodeID)));
             }
         }
