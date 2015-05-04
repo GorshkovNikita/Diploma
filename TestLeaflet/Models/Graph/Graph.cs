@@ -12,16 +12,16 @@ namespace TestLeaflet.Models
         {
             client = new GraphClient(new Uri("http://localhost:7474/db/data"));
             client.Connect();
-            //CreateNodesRelationshipsIndexes();
             //CreateIndex();
             //CreateUniqueConstraint();
-            CreateNodes();
+            //CreateNodes();
+            CreateRelationship(GetAllLinesFromWay(316207298));
         }
 
         public void CreateNodes()
         {
             //Int32 rowNum = 0;
-            for (Int32 i = 2; i <= 20; i += 2)
+            /*for (Int32 i = 2; i <= 20; i += 2)
             {
                 Int64 nodeID = DBConnection.OSMDB.AllGraphNodes.Where(node => node.RowNum == i).First().NodeID;
                 if (this.GetPoint(nodeID) == null)
@@ -32,18 +32,103 @@ namespace TestLeaflet.Models
                         .WithParam("point", point)
                         .ExecuteWithoutResults();
                 }
+            }*/
+        }
+
+        public NodeReference<Point> CreateNode(Point point)
+        {
+            NodeReference<Point> refPoint = this.GetPoint(point);
+            if (refPoint == null)
+            {
+                return client.Cypher
+                    .Create("(p:Point {point})")
+                    .WithParam("point", point)
+                    .Return(p => p.As<Node<Point>>())
+                    .Results
+                    .Single()
+                    .Reference;
+            }
+            else return refPoint;
+        }
+
+        public void CreateRelationship(List<Line> lstLines)
+        {
+            for (int i = 0; i < lstLines.Count; i++)
+            {
+                var source = lstLines[i].Points.First();
+                var target = lstLines[i].Points.Last();
+                NodeReference<Point> refSource = CreateNode(source);
+                NodeReference<Point> refTarget = CreateNode(target);
+                client.CreateRelationship(refSource, new GraphEdge(refTarget, 
+                    new LineData 
+                    {
+                        Length = lstLines[i].Length,
+                        Lanes = lstLines[i].Lanes,
+                        Name = lstLines[i].Name,
+                        Oneway = lstLines[i].Oneway,
+                        RoadType = lstLines[i].RoadType
+                    }
+                ));
             }
         }
 
-        public Point GetPoint(Int64 id)
+        public List<long> GetAllNodesOfIntersectionsOfWay(List<AllGraphNode> intersections)
+        {
+            List<long> nodeIDs = new List<long>();
+            for (int i = 0; i < intersections.Count; i++)
+            {
+                if (!nodeIDs.Contains(intersections[i].NodeID))
+                    nodeIDs.Add(intersections[i].NodeID);
+            }
+            nodeIDs.Sort((n1, n2) => n1.CompareTo(n2));
+            return nodeIDs;
+        }
+
+        public List<Line> GetAllLinesFromWay(long id)
+        {
+            List<Line> lstLines = new List<Line>();
+            OSMWay way = OSMWay.Create(id);
+            List<long> allNodeRefsOnIntersections = this.GetAllNodesOfIntersectionsOfWay(DBConnection.GetAllIntersectionsOfWay(id));
+            Line line = null;
+            for (int i = 0; i < way.RefNodes.Count; i++)
+            {
+                if (allNodeRefsOnIntersections.Contains(way.RefNodes[i]))
+                {
+                    if (line == null)
+                    {
+                        line = new Line();
+                        line.AddPoint(new Point(OSMNode.Create(way.RefNodes[i])));
+                    }
+                    else
+                    {
+                        line.AddPoint(new Point(OSMNode.Create(way.RefNodes[i])));
+                        line.AddTags(way);
+                        lstLines.Add(line);
+                        if ((i - 1) != way.RefNodes.Count)
+                        {
+                            line = new Line();
+                            line.AddPoint(new Point(OSMNode.Create(way.RefNodes[i])));
+                        }
+                    }
+                }
+                else if (line != null)
+                {
+                    line.AddPoint(new Point(OSMNode.Create(way.RefNodes[i])));
+                }
+            }
+            return lstLines;
+        }
+
+        public NodeReference<Point> GetPoint(Point p)
         {
             try
             {
                 return client.Cypher.Match("(point:Point)")
-                            .Where((Point point) => point.ID == id)
-                            .Return(point => point.As<Point>())
+                            .Where((Point point) => point.ID == p.ID)
+                            .Return(point => point.As<Node<Point>>())
                             .Results
-                            .Single();
+                            .Single()
+                            .Reference;
             }
             catch
             {

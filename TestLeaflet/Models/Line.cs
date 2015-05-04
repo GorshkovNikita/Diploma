@@ -24,20 +24,33 @@ namespace TestLeaflet.Models
             Points.Add(point);
         }
 
-        public double Length
+        public void AddTags(OSMWay way)
         {
-            get
+            this.CalcLength();
+            RoadType = way.Tags["highway"];
+            if (way.HasTag("lanes"))
+                Lanes = Convert.ToInt32(way.Tags["lanes"]);
+            if (way.HasTag("name"))
+                Name = way.Tags["name"];
+            if (way.HasTag("oneway"))
             {
-                Length = 0;
-                for (int i = 0; i < Points.Count - 1; i++)
-                {
-                    Length += Distance.Calc(Points[i], Points[i + 1]);
-                }
-                return Length;
+                if (way.Tags["oneway"] == "yes")
+                    Oneway = true;
+                else
+                    Oneway = false;
             }
-            private set { Length = value; }
         }
 
+        public void CalcLength()
+        {
+            Length = 0;
+            for (int i = 0; i < Points.Count - 1; i++)
+            {
+                Length += Distance.Calc(Points[i], Points[i + 1]);
+            }
+        }
+
+        public double Length { get; private set; }
         public List<Point> Points { get; private set; }
         public String RoadType { get; set; }
         public Int32 Lanes { get; set; }
