@@ -15,24 +15,9 @@ namespace TestLeaflet.Models
             //CreateIndex();
             //CreateUniqueConstraint();
             //CreateNodes();
-            CreateRelationship(GetAllLinesFromWay(316207298));
-        }
-
-        public void CreateNodes()
-        {
-            //Int32 rowNum = 0;
-            /*for (Int32 i = 2; i <= 20; i += 2)
-            {
-                Int64 nodeID = DBConnection.OSMDB.AllGraphNodes.Where(node => node.RowNum == i).First().NodeID;
-                if (this.GetPoint(nodeID) == null)
-                {
-                    var point = new Point(OSMNode.Create(nodeID));
-                    client.Cypher
-                        .Create("(point:Point {point})")
-                        .WithParam("point", point)
-                        .ExecuteWithoutResults();
-                }
-            }*/
+            //CreateRelationship(GetAllLinesFromWay(316207298));
+            //CreateRelationship(GetAllLinesFromWay(316207297));
+            CreateRelationship(GetAllLinesFromWay(161506551));
         }
 
         public NodeReference<Point> CreateNode(Point point)
