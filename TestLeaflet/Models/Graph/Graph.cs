@@ -12,12 +12,13 @@ namespace TestLeaflet.Models
         {
             client = new GraphClient(new Uri("http://localhost:7474/db/data"));
             client.Connect();
+            //CreateRelationship(GetAllLinesFromWay(316207298));
+            //CreateRelationship(GetAllLinesFromWay(316207298));
             //CreateIndex();
             //CreateUniqueConstraint();
-            //CreateNodes();
             //CreateRelationship(GetAllLinesFromWay(316207298));
             //CreateRelationship(GetAllLinesFromWay(316207297));
-            CreateRelationship(GetAllLinesFromWay(161506551));
+            //CreateRelationship(GetAllLinesFromWay(161506551));
         }
 
         public NodeReference<Point> CreateNode(Point point)
