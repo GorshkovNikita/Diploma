@@ -5,10 +5,10 @@ open_big_xml.bat
 TestLeaflet/bin/
 TestLeaflet/obj/
 TestResults/
-DiplomaTests/obj/
-DiplomaTests/bin/
+DiplomaTest/obj/
+DiplomaTest/bin/
 TestLeaflet.v11.suo
 OSM_Data_DB
 TestLeaflet/Web.config
-DiplomaTests/App.config
+DiplomaTest/App.config
 Queries.txt

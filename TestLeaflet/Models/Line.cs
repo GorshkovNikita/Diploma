@@ -39,6 +39,10 @@ namespace TestLeaflet.Models
                 else
                     Oneway = false;
             }
+            if (way.HasTag("maxspeed"))
+                MaxSpeed = this.ParseMaxSpeed(way.Tags["maxspeed"]);
+            if (way.HasTag("surface"))
+                Surface = way.Tags["surface"];
         }
 
         public void CalcLength()
@@ -50,11 +54,25 @@ namespace TestLeaflet.Models
             }
         }
 
+        public int ParseMaxSpeed(string maxSpeed)
+        {
+            if (maxSpeed.Contains(" mph"))
+                return SpeedTable.GetKmh(Convert.ToInt32(maxSpeed.Remove(maxSpeed.Length - 4, 4)));
+            else if (maxSpeed.Contains("mph"))
+                return SpeedTable.GetKmh(Convert.ToInt32(maxSpeed.Remove(maxSpeed.Length - 3, 3)));
+            else if (maxSpeed.Contains("ru:") || maxSpeed.Contains("RU:"))
+                return SpeedTable.GetKmh(maxSpeed);
+            else
+                return Convert.ToInt32(maxSpeed);
+        }
+
         public double Length { get; private set; }
         public List<Point> Points { get; private set; }
-        public String RoadType { get; set; }
-        public Int32 Lanes { get; set; }
-        public Boolean Oneway { get; set; }
-        public String Name { get; set; }
+        public String RoadType { get; private set; }
+        public Int32 Lanes { get; private set; }
+        public Boolean Oneway { get; private set; }
+        public String Name { get; private set; }
+        public int MaxSpeed { get; private set; }
+        public string Surface { get; private set; }
     }
 }
