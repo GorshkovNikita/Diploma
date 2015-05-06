@@ -14,6 +14,53 @@ namespace TestLeaflet.Models
             client.Connect();
         }
 
+        public void BuildTestGraph()
+        {
+            /*this.CreateRelationshipsOfWay(GetAllLinesFromWay(188511699));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(23964689));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(27658584));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(53577880));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(48739269));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(162195072));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(27658625));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(27658605));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(34332773));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(208675194));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(48739267));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(27658586));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(23964693));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(23964830));
+
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(183548861));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(48533122));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(183548854));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(156665635));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(209304409));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(224783959));
+
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(201227737));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(156665679));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(156665691));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(156665641));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(201227736));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(48739263));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(156665689));
+
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(200772097));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(189372921));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(201735418));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(110892444));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(110891907));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(201735419));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(200772089));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(200772093));
+
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(242047410));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(175108116));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(183544008));
+            this.CreateRelationshipsOfWay(GetAllLinesFromWay(183550844));*/
+        }
+
         public void BuildGraph()
         {
             List<long> allIDs = DBConnection.GetAllIntersectedWayID();
