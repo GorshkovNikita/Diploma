@@ -28,12 +28,14 @@ namespace TestLeaflet.Controllers
             //OSMWay way = OSMWay.Create(4870889);
             //OSMNode node = OSMNode.Create(26609007);
             Graph graph = new Graph();
+            graph.BuildGraph();
             //List<long> nodes = graph.GetAllNodesOfIntersectionsOfWay(DBConnection.GetAllIntersectionsOfWay(316207298));
             //List<Line> lst = graph.GetAllLinesFromWay(316207298);
             //List<AllGraphNode> lst = DBConnection.GetAllIntersectionsOfWay(316207298);
             //Point node = graph.GetPoint(27717690);
             //graph.CreateIndex();
             //graph.CreateUniqueConstraint();
+            //List<long> lst = DBConnection.GetAllIntersectedWayID();
             return View();
         }
     }

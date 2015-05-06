@@ -22,11 +22,14 @@ namespace TestLeaflet.Models
 
     public class LineData
     {
+        public long WayID { get; set; }
         public double Length { get; set; }
         public String RoadType { get; set; }
         public Int32 Lanes { get; set; }
         public Boolean Oneway { get; set; }
         public String Name { get; set; }
+        public int MaxSpeed { get; set; }
+        public string Surface { get; set; }
     }
 
 }

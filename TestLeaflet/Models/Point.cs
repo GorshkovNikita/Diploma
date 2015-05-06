@@ -26,10 +26,28 @@ namespace TestLeaflet.Models
             this.ID = node.ID;
             this.Latitude = node.Latitude;
             this.Longitude = node.Longitude;
+            this.AddTags(node);
+        }
+
+        public void AddTags(OSMNode node)
+        {
+            if (node.HasTag("bicycle"))
+            {
+                if (node.Tags["bicycle"] == "no")
+                    Bicycle = false;
+            }
+            else
+                Bicycle = true;
+            if (node.HasTag("barrier"))
+                Barrier = node.Tags["barrier"];
+            else
+                Barrier = "no";
         }
 
         public Int64 ID { get; set; }
         public Double Latitude { get; set; }
         public Double Longitude { get; set; }
+        public String Barrier { get; set; }
+        public bool Bicycle { get; set; }
     }
 }

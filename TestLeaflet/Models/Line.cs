@@ -26,23 +26,32 @@ namespace TestLeaflet.Models
 
         public void AddTags(OSMWay way)
         {
+            WayID = way.ID;
             this.CalcLength();
             RoadType = way.Tags["highway"];
             if (way.HasTag("lanes"))
                 Lanes = Convert.ToInt32(way.Tags["lanes"]);
+            else
+                Lanes = 0;
             if (way.HasTag("name"))
                 Name = way.Tags["name"];
+            else
+                Name = "";
             if (way.HasTag("oneway"))
             {
                 if (way.Tags["oneway"] == "yes")
                     Oneway = true;
-                else
-                    Oneway = false;
             }
+            else
+                Oneway = false;
             if (way.HasTag("maxspeed"))
                 MaxSpeed = this.ParseMaxSpeed(way.Tags["maxspeed"]);
+            else
+                MaxSpeed = 200;
             if (way.HasTag("surface"))
                 Surface = way.Tags["surface"];
+            else
+                Surface = "";
         }
 
         public void CalcLength()
@@ -66,6 +75,7 @@ namespace TestLeaflet.Models
                 return Convert.ToInt32(maxSpeed);
         }
 
+        public long WayID { get; private set; }
         public double Length { get; private set; }
         public List<Point> Points { get; private set; }
         public String RoadType { get; private set; }
