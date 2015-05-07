@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Neo4jClient;
 
-namespace TestLeaflet.Models
+namespace TestLeaflet.Models.Graph
 {
     public class GraphEdge : Relationship, IRelationshipAllowingSourceNode<Point>,
     IRelationshipAllowingTargetNode<Point>
@@ -32,4 +32,9 @@ namespace TestLeaflet.Models
         public string Surface { get; set; }
     }
 
+    public class NodeDist
+    {
+        public long ID { get; set; }
+        public double Length { get; set; }
+    }
 }

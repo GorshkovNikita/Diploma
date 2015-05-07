@@ -29,6 +29,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -161,6 +163,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\DijkstraAlgorithm.cs" />
+    <Compile Include="Algorithms\NodeData.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -169,6 +173,7 @@
     <Compile Include="Extended_Classes\SpeedTable.cs" />
     <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Extended_Classes\Distance.cs" />
+    <Compile Include="Models\Graph\GraphIterator.cs" />
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\OSMDataClasses.designer.cs">
       <AutoGen>True</AutoGen>
@@ -338,7 +343,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>51866</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:58377/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

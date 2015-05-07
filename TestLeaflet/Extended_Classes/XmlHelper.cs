@@ -11,43 +11,6 @@ namespace TestLeaflet.Extended_Classes
 {
     public class XmlHelper
     {
-        /// <summary>
-        /// Поиск в xml-файле всех точек, соответсвующих светофорам
-        /// </summary>
-        /// <returns>
-        /// Массив точек, соответсвующих светофорам
-        /// </returns>
-        public static List<Point> GetAllTrafficSignals()
-        {
-            List<Point> allTrafficSignals = new List<Point>();
-            using (XmlReader reader = XmlReader.Create(_filename))
-            {
-                reader.MoveToContent();
-                while (reader.Read())
-                {
-                    if (reader.NodeType == XmlNodeType.Element && reader.Name == "node")
-                    {
-                        XDocument doc = XDocument.Load(reader.ReadSubtree());
-                        XElement el = doc.Root;
-                        if (el.HasElements)
-                        {
-                            List<XElement> children = el.Elements().ToList();
-                            for (Int32 i = 0; i < children.Count; i++)
-                            {
-                                if ((children[i].Attribute("k").Value == "highway") && (children[i].Attribute("v").Value == "traffic_signals"))
-                                {
-                                    Point point = XmlHelper.MakePointFromXmlElement(el);
-                                    allTrafficSignals.Add(point);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return allTrafficSignals;
-        }
-
         public static Line FindStreet(String name)
         {
             Line street = new Line();

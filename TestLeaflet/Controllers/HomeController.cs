@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using TestLeaflet.Extended_Classes;
 using System.Globalization;
 using TestLeaflet.Models;
+using TestLeaflet.Models.Graph;
+using TestLeaflet.Algorithms;
+using Neo4jClient;
 
 namespace TestLeaflet.Controllers
 {
@@ -28,7 +31,9 @@ namespace TestLeaflet.Controllers
             //OSMWay way = OSMWay.Create(4870889);
             //OSMNode node = OSMNode.Create(26609007);
             Graph graph = new Graph();
-            graph.BuildTestGraph();
+            DijkstraAlgorithm.RunAlgo(new GraphIterator(graph), 2195315960, 259795402);
+            //List<NodeDist> node = graph.GetAllAdjacentNodesInfo(2195315963);
+            //graph.BuildTestGraph();
             //graph.BuildGraph();
             //List<long> nodes = graph.GetAllNodesOfIntersectionsOfWay(DBConnection.GetAllIntersectionsOfWay(316207298));
             //List<Line> lst = graph.GetAllLinesFromWay(316207298);
