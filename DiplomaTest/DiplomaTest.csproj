@@ -46,17 +46,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TestLeaflet\TestLeaflet.csproj">
-      <Project>{ccaaf9a4-5965-4844-945e-f100e5c4a547}</Project>
-      <Name>TestLeaflet</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Diploma\Diploma.csproj">
+      <Project>{ccaaf9a4-5965-4844-945e-f100e5c4a547}</Project>
+      <Name>Diploma</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

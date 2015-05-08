@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diploma", "Diploma\Diploma.csproj", "{CCAAF9A4-5965-4844-945E-F100E5C4A547}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiplomaTest", "DiplomaTest\DiplomaTest.csproj", "{A326A8B5-3B20-4E0B-9041-76B6E1E65583}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCAAF9A4-5965-4844-945E-F100E5C4A547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCAAF9A4-5965-4844-945E-F100E5C4A547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCAAF9A4-5965-4844-945E-F100E5C4A547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCAAF9A4-5965-4844-945E-F100E5C4A547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A326A8B5-3B20-4E0B-9041-76B6E1E65583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A326A8B5-3B20-4E0B-9041-76B6E1E65583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A326A8B5-3B20-4E0B-9041-76B6E1E65583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A326A8B5-3B20-4E0B-9041-76B6E1E65583}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
