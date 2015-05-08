@@ -348,18 +348,21 @@ namespace Diploma.Models.Graph
         }
 
         /// <summary>
-        /// Получает ID всех узлов, смежных с данным
+        /// Получает ID смежных узлов и расстояние до них
         /// </summary>
         /// <param name="id">ID узла</param>
-        /// <returns>Список ID узлов</returns>
-        public List<long> GetAllAdjacentNodeIDs(long id)
+        /// <returns>Id and length</returns>
+        public List<NodeDist> GetAllAdjacentNodesInfo(long id)
         {
             try
             {
-                
                 return _client.Cypher.Match("(n)-[r]->(m)")
                             .Where((Point n) => n.ID == id)
-                            .Return(m => m.As<Node<Point>>().Data.ID)
+                            .Return((m, r) => new NodeDist
+                            {
+                                ID = m.As<Point>().ID,
+                                Length = r.As<Line>().Length
+                            })
                             .Results
                             .ToList();
             }
@@ -370,7 +373,7 @@ namespace Diploma.Models.Graph
         }
 
         /// <summary>
-        /// Полуяает узел графа по его ID
+        /// Получает узел графа по его ID
         /// </summary>
         /// <param name="id">ID узла</param>
         /// <returns>Узел или null, если узел не найден</returns>
@@ -391,22 +394,42 @@ namespace Diploma.Models.Graph
         }
 
         /// <summary>
-        /// Получает ID смежных узлов и расстояние до них
+        /// Получает данные об узле графа в виде Point
         /// </summary>
         /// <param name="id">ID узла</param>
-        /// <returns>Id and length</returns>
-        public List<NodeDist> GetAllAdjacentNodesInfo(long id)
+        /// <returns>Данные об узле</returns>
+        public Point GetPoint(long id)
+        {
+            try
+            {
+                return _client.Cypher.Match("(point:Point)")
+                            .Where((Point point) => point.ID == id)
+                            .Return(point => point.As<Point>())
+                            .Results
+                            .Single();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Получает данные о ребре между двумя узлами
+        /// </summary>
+        /// <param name="source">Узел-источник</param>
+        /// <param name="target">Конечный узел</param>
+        /// <returns>Данные о ребре</returns>
+        public LineData GetLineDataBetweenNodes(long source, long target)
         {
             try
             {
                 return _client.Cypher.Match("(n)-[r]->(m)")
-                            .Where((Point n) => n.ID == id)
-                            .Return((m, r) => new NodeDist {
-                                ID = m.As<Point>().ID,
-                                Length = r.As<Line>().Length
-                            })
-                            .Results
-                            .ToList();
+                    .Where((Point n) => n.ID == source)
+                    .AndWhere((Point m) => m.ID == target)
+                    .Return(r => r.As<LineData>())
+                    .Results
+                    .Single();
             }
             catch
             {

@@ -102,15 +102,24 @@ namespace Diploma.Models.Graph
         /// Создает конечный путь
         /// </summary>
         /// <returns>Путь</returns>
-        public List<Point> CreatePath()
+        public Path CreatePath()
         {
-            List<Point> lstPoints = new List<Point>();
-            long i = ClosedNodes.Last().ParentID;
-            while (i != 0)
+            Path path = new Path();
+            path.Length = ClosedNodes.Last().LengthFromSource;
+            NodeData nodeData = ClosedNodes.Last();
+            path.Points.Insert(0, _graph.GetPoint(nodeData.ID));
+            while (nodeData.ParentID != 0)
             {
-                lstPoints.Add(_graph.GetNode(i).Data);
+                LineData lineData = _graph.GetLineDataBetweenNodes(nodeData.ParentID, nodeData.ID);
+                List<long> ls = DBConnection.GetNodesInWayBetween(lineData.WayID, nodeData.ParentID, nodeData.ID);
+                for (int i = ls.Count - 1; i >= 0; i--)
+                {
+                    path.Points.Insert(0, new Point(OSMNode.Create(ls[i])));
+                }
+                path.Points.Insert(0, _graph.GetPoint(nodeData.ParentID));
+                nodeData = ClosedNodes.Where(n => n.ID == nodeData.ParentID).First();
             }
-            return lstPoints;
+            return path;
         }
 
         /// <summary>
