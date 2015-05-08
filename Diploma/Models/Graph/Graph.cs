@@ -15,11 +15,117 @@ namespace Diploma.Models.Graph
         }
 
         /// <summary>
+        /// Построение тестового графа (из Википедии)
+        /// </summary>
+        public void BuildTestGraphFromWiki()
+        {
+            Point p = new Point();
+            p.ID = 1;
+            NodeReference<Point> refSource = CreateNode(p).Reference;
+            p.ID = 2;
+            NodeReference<Point> refTarget = CreateNode(p).Reference;
+            LineData lineData = new LineData
+            {
+                Length = 7
+            };
+            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+
+            p.ID = 1;
+            refSource = CreateNode(p).Reference;
+            p.ID = 3;
+            refTarget = CreateNode(p).Reference;
+            lineData = new LineData
+            {
+                Length = 9
+            };
+            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+
+            p.ID = 1;
+            refSource = CreateNode(p).Reference;
+            p.ID = 6;
+            refTarget = CreateNode(p).Reference;
+            lineData = new LineData
+            {
+                Length = 14
+            };
+            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+
+            p.ID = 2;
+            refSource = CreateNode(p).Reference;
+            p.ID = 4;
+            refTarget = CreateNode(p).Reference;
+            lineData = new LineData
+            {
+                Length = 15
+            };
+            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+
+            p.ID = 2;
+            refSource = CreateNode(p).Reference;
+            p.ID = 3;
+            refTarget = CreateNode(p).Reference;
+            lineData = new LineData
+            {
+                Length = 10
+            };
+            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+
+            p.ID = 3;
+            refSource = CreateNode(p).Reference;
+            p.ID = 6;
+            refTarget = CreateNode(p).Reference;
+            lineData = new LineData
+            {
+                Length = 2
+            };
+            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+
+            p.ID = 3;
+            refSource = CreateNode(p).Reference;
+            p.ID = 4;
+            refTarget = CreateNode(p).Reference;
+            lineData = new LineData
+            {
+                Length = 11
+            };
+            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+
+            p.ID = 6;
+            refSource = CreateNode(p).Reference;
+            p.ID = 5;
+            refTarget = CreateNode(p).Reference;
+            lineData = new LineData
+            {
+                Length = 9
+            };
+            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+
+            p.ID = 4;
+            refSource = CreateNode(p).Reference;
+            p.ID = 5;
+            refTarget = CreateNode(p).Reference;
+            lineData = new LineData
+            {
+                Length = 6
+            };
+            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+        }
+
+        /// <summary>
         /// Построение тестового графа
         /// </summary>
         public void BuildTestGraph()
         {
-            /*this.CreateRelationshipsOfWay(188511699);
+            this.CreateRelationshipsOfWay(188511699);
             this.CreateRelationshipsOfWay(23964689);
             this.CreateRelationshipsOfWay(27658584);
             this.CreateRelationshipsOfWay(53577880);
@@ -33,14 +139,12 @@ namespace Diploma.Models.Graph
             this.CreateRelationshipsOfWay(27658586);
             this.CreateRelationshipsOfWay(23964693);
             this.CreateRelationshipsOfWay(23964830);
-
             this.CreateRelationshipsOfWay(183548861);
             this.CreateRelationshipsOfWay(48533122);
             this.CreateRelationshipsOfWay(183548854);
             this.CreateRelationshipsOfWay(156665635);
             this.CreateRelationshipsOfWay(209304409);
             this.CreateRelationshipsOfWay(224783959);
-
             this.CreateRelationshipsOfWay(201227737);
             this.CreateRelationshipsOfWay(156665679);
             this.CreateRelationshipsOfWay(156665691);
@@ -48,7 +152,6 @@ namespace Diploma.Models.Graph
             this.CreateRelationshipsOfWay(201227736);
             this.CreateRelationshipsOfWay(48739263);
             this.CreateRelationshipsOfWay(156665689);
-
             this.CreateRelationshipsOfWay(200772097);
             this.CreateRelationshipsOfWay(189372921);
             this.CreateRelationshipsOfWay(201735418);
@@ -57,11 +160,51 @@ namespace Diploma.Models.Graph
             this.CreateRelationshipsOfWay(201735419);
             this.CreateRelationshipsOfWay(200772089);
             this.CreateRelationshipsOfWay(200772093);
-
             this.CreateRelationshipsOfWay(242047410);
             this.CreateRelationshipsOfWay(175108116);
             this.CreateRelationshipsOfWay(183544008);
-            this.CreateRelationshipsOfWay(183550844);*/
+            this.CreateRelationshipsOfWay(183550844);
+            this.CreateRelationshipsOfWay(23964691);
+            this.CreateRelationshipsOfWay(108058488);
+            this.CreateRelationshipsOfWay(140827279);
+            this.CreateRelationshipsOfWay(162194016);
+            this.CreateRelationshipsOfWay(175147608);
+            this.CreateRelationshipsOfWay(177365318);
+            this.CreateRelationshipsOfWay(23964308);
+            this.CreateRelationshipsOfWay(39093169);
+            this.CreateRelationshipsOfWay(39093170);
+            this.CreateRelationshipsOfWay(183548865);
+            this.CreateRelationshipsOfWay(106260455);
+            this.CreateRelationshipsOfWay(220440831);
+            this.CreateRelationshipsOfWay(37853645);
+            this.CreateRelationshipsOfWay(37938973);
+            this.CreateRelationshipsOfWay(48739252);
+            this.CreateRelationshipsOfWay(109742311);
+            this.CreateRelationshipsOfWay(39580958);
+            this.CreateRelationshipsOfWay(227681212);
+            this.CreateRelationshipsOfWay(23964313);
+            this.CreateRelationshipsOfWay(23964319);
+            this.CreateRelationshipsOfWay(23964326);
+            this.CreateRelationshipsOfWay(38532045);
+            this.CreateRelationshipsOfWay(263482442);
+            this.CreateRelationshipsOfWay(24951330);
+            this.CreateRelationshipsOfWay(142236999);
+            this.CreateRelationshipsOfWay(142239111);
+            this.CreateRelationshipsOfWay(157102613);
+            this.CreateRelationshipsOfWay(185310802);
+            this.CreateRelationshipsOfWay(34332772);
+            this.CreateRelationshipsOfWay(140827279);
+            this.CreateRelationshipsOfWay(39093168);
+            this.CreateRelationshipsOfWay(77737642);
+            this.CreateRelationshipsOfWay(78185855);
+            this.CreateRelationshipsOfWay(85632746);
+            this.CreateRelationshipsOfWay(111192007);
+            this.CreateRelationshipsOfWay(125126705);
+            this.CreateRelationshipsOfWay(27658614);
+            this.CreateRelationshipsOfWay(27658684);
+            this.CreateRelationshipsOfWay(95403317);
+            this.CreateRelationshipsOfWay(79112036);
+            this.CreateRelationshipsOfWay(102185908);
         }
 
         /// <summary>

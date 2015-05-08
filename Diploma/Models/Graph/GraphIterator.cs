@@ -84,7 +84,7 @@ namespace Diploma.Models.Graph
         }
 
         /// <summary>
-        /// Обновление длины от источника, если необходимо
+        /// Обновление длины от источника и изменение родителя, если необходимо
         /// </summary>
         /// <param name="node">Узел для обновления</param>
         public void UpdateLength(NodeDist node)
@@ -94,7 +94,23 @@ namespace Diploma.Models.Graph
             {
                 int index = this.OpenedNodes.FindIndex(n => n.ID == node.ID);
                 this.OpenedNodes[index].LengthFromSource = node.Length + this.Current.LengthFromSource;
+                this.OpenedNodes[index].ParentID = this.Current.ID;
             }
+        }
+
+        /// <summary>
+        /// Создает конечный путь
+        /// </summary>
+        /// <returns>Путь</returns>
+        public List<Point> CreatePath()
+        {
+            List<Point> lstPoints = new List<Point>();
+            long i = ClosedNodes.Last().ParentID;
+            while (i != 0)
+            {
+                lstPoints.Add(_graph.GetNode(i).Data);
+            }
+            return lstPoints;
         }
 
         /// <summary>

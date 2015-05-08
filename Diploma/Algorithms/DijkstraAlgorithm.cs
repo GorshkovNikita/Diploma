@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Diploma.Models;
 using Diploma.Models.Graph;
 
 namespace Diploma.Algorithms
@@ -44,6 +45,7 @@ namespace Diploma.Algorithms
                 graph.SetCurrentNode();
             }
             graph.RemoveCurrentFromOpenedNodesAndAddInClosedNodes();
+            
         }
     }
 }

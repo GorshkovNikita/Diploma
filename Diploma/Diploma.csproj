@@ -180,6 +180,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OSMDataClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Path.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Extended_Classes\XmlHelper.cs" />
     <Compile Include="Global.asax.cs">

@@ -31,7 +31,8 @@ namespace Diploma.Controllers
             //OSMWay way = OSMWay.Create(4870889);
             //OSMNode node = OSMNode.Create(26609007);
             Graph graph = new Graph();
-            DijkstraAlgorithm.RunAlgo(new GraphIterator(graph), 2195315960, 259795402);
+            //graph.BuildTestGraphFromWiki();
+            DijkstraAlgorithm.RunAlgo(new GraphIterator(graph), 1939502615, 259791149);
             //List<NodeDist> node = graph.GetAllAdjacentNodesInfo(2195315963);
             //graph.BuildTestGraph();
             //graph.BuildGraph();
