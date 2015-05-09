@@ -35,7 +35,8 @@ namespace Diploma.Controllers
             //LineData lineData = graph.GetLineDataBetweenNodes(259791092, 467150376);
             //List<long> lst = DBConnection.GetNodesInWayBetween(23964689, 259794497, 1741243719);
             //graph.BuildTestGraphFromWiki();
-            DijkstraAlgorithm.RunAlgo(new GraphIterator(graph), 1939502615, 259791149);
+            //Path path = DijkstraAlgorithm.RunAlgo(new GraphIterator(graph), 1939502615, 259791149);
+            Path path = DijkstraAlgorithm.RunAlgo(new GraphIterator(graph), 1939502615, 2086140685);
             //List<NodeDist> node = graph.GetAllAdjacentNodesInfo(2195315963);
             //graph.BuildTestGraph();
             //graph.BuildGraph();
@@ -46,7 +47,7 @@ namespace Diploma.Controllers
             //graph.CreateIndex();
             //graph.CreateUniqueConstraint();
             //List<long> lst = DBConnection.GetAllIntersectedWayID();
-            return View();
+            return View(path);
         }
     }
 }

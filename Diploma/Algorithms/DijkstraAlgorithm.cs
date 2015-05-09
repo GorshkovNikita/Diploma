@@ -9,7 +9,7 @@ namespace Diploma.Algorithms
 {
     public class DijkstraAlgorithm
     {
-        public static void RunAlgo(GraphIterator graph, long source, long target)
+        public static Path RunAlgo(GraphIterator graph, long source, long target)
         {
             graph.SetCurrentNode(source);
             graph.OpenedNodes.Add(
@@ -45,7 +45,7 @@ namespace Diploma.Algorithms
                 graph.SetCurrentNode();
             }
             graph.RemoveCurrentFromOpenedNodesAndAddInClosedNodes();
-            Path path = graph.CreatePath();
+            return graph.CreatePath();
         }
     }
 }

@@ -8,7 +8,7 @@
         <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         <%: Styles.Render("~/Content/css", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css") %>
-        <%: Scripts.Render("~/bundles/modernizr", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js", "~/bundles/jquery") %>  
+        <%: Scripts.Render("~/bundles/modernizr", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js", "~/bundles/jquery", "~/Content/js.js") %>
     </head>
     <body>
         <div id="body">
