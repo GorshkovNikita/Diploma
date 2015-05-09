@@ -1,5 +1,6 @@
 *.user
 *.suo
+Diploma.suo
 Diploma/bin/
 Diploma/obj/
 DiplomaTest/obj/
