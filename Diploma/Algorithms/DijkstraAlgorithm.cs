@@ -45,7 +45,8 @@ namespace Diploma.Algorithms
                 graph.SetCurrentNode();
             }
             graph.RemoveCurrentFromOpenedNodesAndAddInClosedNodes();
-            return graph.CreatePath();
+            return graph.CreateFullPath();
+            //return graph.CreatePath();
         }
     }
 }

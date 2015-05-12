@@ -10,8 +10,11 @@ namespace Diploma.Models.Graph
     {
         public Graph()
         {
-            _client = new GraphClient(new Uri("http://localhost:7474/db/data"));
-            _client.Connect();
+            if (_client == null)
+            {
+                _client = new GraphClient(new Uri("http://localhost:7474/db/data"));
+                _client.Connect();
+            }
         }
 
         /// <summary>

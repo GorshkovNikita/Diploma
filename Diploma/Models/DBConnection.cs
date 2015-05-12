@@ -27,7 +27,7 @@ namespace Diploma.Models
         }
 
         /// <summary>
-        /// Получить ID узлов между двумя
+        /// Получить ID всех узлов между двумя вершинами, находящимися на одном ребре
         /// </summary>
         /// <param name="way">ID пути</param>
         /// <param name="source">ID узла-источника</param>

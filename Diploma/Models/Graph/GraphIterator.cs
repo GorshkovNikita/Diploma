@@ -99,10 +99,28 @@ namespace Diploma.Models.Graph
         }
 
         /// <summary>
-        /// Создает конечный путь
+        /// Создает конечный путь, состоящий только из вершин графа (без промежуточных узлов)
         /// </summary>
         /// <returns>Путь</returns>
         public Path CreatePath()
+        {
+            Path path = new Path();
+            path.Length = ClosedNodes.Last().LengthFromSource;
+            NodeData nodeData = ClosedNodes.Last();
+            path.Points.Insert(0, _graph.GetPoint(nodeData.ID));
+            while (nodeData.ParentID != 0)
+            {
+                path.Points.Insert(0, _graph.GetPoint(nodeData.ParentID));
+                nodeData = ClosedNodes.Where(n => n.ID == nodeData.ParentID).First();
+            }
+            return path;
+        }
+
+        /// <summary>
+        /// Создает конечный путь, содержащий абсолютно все точки, включая те, которых нет в графе (берутся из БД с инфой о точках)
+        /// </summary>
+        /// <returns>Путь</returns>
+        public Path CreateFullPath()
         {
             Path path = new Path();
             path.Length = ClosedNodes.Last().LengthFromSource;
