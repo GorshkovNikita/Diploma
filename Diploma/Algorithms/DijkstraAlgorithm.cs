@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Diploma.Models;
-using Diploma.Models.Graph;
+using Diploma.Models.GraphData;
 
 namespace Diploma.Algorithms
 {
@@ -45,8 +45,8 @@ namespace Diploma.Algorithms
                 graph.SetCurrentNode();
             }
             graph.RemoveCurrentFromOpenedNodesAndAddInClosedNodes();
-            return graph.CreateFullPath();
-            //return graph.CreatePath();
+            //return graph.CreateFullPath();
+            return graph.CreatePath().GetFullPath();
         }
     }
 }

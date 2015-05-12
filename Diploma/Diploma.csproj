@@ -174,7 +174,7 @@
     <Compile Include="Extended_Classes\SpeedTable.cs" />
     <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Extended_Classes\Distance.cs" />
-    <Compile Include="Models\Graph\GraphIterator.cs" />
+    <Compile Include="Models\GraphData\GraphIterator.cs" />
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\OSMDataClasses.designer.cs">
       <AutoGen>True</AutoGen>
@@ -187,8 +187,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Graph\Graph.cs" />
-    <Compile Include="Models\Graph\GraphElements.cs" />
+    <Compile Include="Models\GraphData\Graph.cs" />
+    <Compile Include="Models\GraphData\GraphElements.cs" />
     <Compile Include="Models\OSMData\OSMElement.cs" />
     <Compile Include="Models\OSMData\OSMNode.cs" />
     <Compile Include="Models\OSMData\OSMRelation.cs" />
