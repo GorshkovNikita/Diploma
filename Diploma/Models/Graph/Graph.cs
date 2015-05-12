@@ -8,19 +8,10 @@ namespace Diploma.Models.Graph
 {
     public class Graph
     {
-        public Graph()
-        {
-            if (_client == null)
-            {
-                _client = new GraphClient(new Uri("http://localhost:7474/db/data"));
-                _client.Connect();
-            }
-        }
-
         /// <summary>
         /// Построение тестового графа (из Википедии)
         /// </summary>
-        public void BuildTestGraphFromWiki()
+        public static void BuildTestGraphFromWiki()
         {
             Point p = new Point();
             p.ID = 1;
@@ -31,8 +22,8 @@ namespace Diploma.Models.Graph
             {
                 Length = 7
             };
-            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+            Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
 
             p.ID = 1;
             refSource = CreateNode(p).Reference;
@@ -42,8 +33,8 @@ namespace Diploma.Models.Graph
             {
                 Length = 9
             };
-            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+            Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
 
             p.ID = 1;
             refSource = CreateNode(p).Reference;
@@ -53,8 +44,8 @@ namespace Diploma.Models.Graph
             {
                 Length = 14
             };
-            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+            Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
 
             p.ID = 2;
             refSource = CreateNode(p).Reference;
@@ -64,8 +55,8 @@ namespace Diploma.Models.Graph
             {
                 Length = 15
             };
-            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+            Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
 
             p.ID = 2;
             refSource = CreateNode(p).Reference;
@@ -75,8 +66,8 @@ namespace Diploma.Models.Graph
             {
                 Length = 10
             };
-            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+            Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
 
             p.ID = 3;
             refSource = CreateNode(p).Reference;
@@ -86,8 +77,8 @@ namespace Diploma.Models.Graph
             {
                 Length = 2
             };
-            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+            Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
 
             p.ID = 3;
             refSource = CreateNode(p).Reference;
@@ -97,8 +88,8 @@ namespace Diploma.Models.Graph
             {
                 Length = 11
             };
-            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+            Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
 
             p.ID = 6;
             refSource = CreateNode(p).Reference;
@@ -108,8 +99,8 @@ namespace Diploma.Models.Graph
             {
                 Length = 9
             };
-            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+            Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
 
             p.ID = 4;
             refSource = CreateNode(p).Reference;
@@ -119,106 +110,106 @@ namespace Diploma.Models.Graph
             {
                 Length = 6
             };
-            _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-            _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+            Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+            Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
         }
 
         /// <summary>
         /// Построение тестового графа
         /// </summary>
-        public void BuildTestGraph()
+        public static void BuildTestGraph()
         {
-            this.CreateRelationshipsOfWay(188511699);
-            this.CreateRelationshipsOfWay(23964689);
-            this.CreateRelationshipsOfWay(27658584);
-            this.CreateRelationshipsOfWay(53577880);
-            this.CreateRelationshipsOfWay(48739269);
-            this.CreateRelationshipsOfWay(162195072);
-            this.CreateRelationshipsOfWay(27658625);
-            this.CreateRelationshipsOfWay(27658605);
-            this.CreateRelationshipsOfWay(34332773);
-            this.CreateRelationshipsOfWay(208675194);
-            this.CreateRelationshipsOfWay(48739267);
-            this.CreateRelationshipsOfWay(27658586);
-            this.CreateRelationshipsOfWay(23964693);
-            this.CreateRelationshipsOfWay(23964830);
-            this.CreateRelationshipsOfWay(183548861);
-            this.CreateRelationshipsOfWay(48533122);
-            this.CreateRelationshipsOfWay(183548854);
-            this.CreateRelationshipsOfWay(156665635);
-            this.CreateRelationshipsOfWay(209304409);
-            this.CreateRelationshipsOfWay(224783959);
-            this.CreateRelationshipsOfWay(201227737);
-            this.CreateRelationshipsOfWay(156665679);
-            this.CreateRelationshipsOfWay(156665691);
-            this.CreateRelationshipsOfWay(156665641);
-            this.CreateRelationshipsOfWay(201227736);
-            this.CreateRelationshipsOfWay(48739263);
-            this.CreateRelationshipsOfWay(156665689);
-            this.CreateRelationshipsOfWay(200772097);
-            this.CreateRelationshipsOfWay(189372921);
-            this.CreateRelationshipsOfWay(201735418);
-            this.CreateRelationshipsOfWay(110892444);
-            this.CreateRelationshipsOfWay(110891907);
-            this.CreateRelationshipsOfWay(201735419);
-            this.CreateRelationshipsOfWay(200772089);
-            this.CreateRelationshipsOfWay(200772093);
-            this.CreateRelationshipsOfWay(242047410);
-            this.CreateRelationshipsOfWay(175108116);
-            this.CreateRelationshipsOfWay(183544008);
-            this.CreateRelationshipsOfWay(183550844);
-            this.CreateRelationshipsOfWay(23964691);
-            this.CreateRelationshipsOfWay(108058488);
-            this.CreateRelationshipsOfWay(140827279);
-            this.CreateRelationshipsOfWay(162194016);
-            this.CreateRelationshipsOfWay(175147608);
-            this.CreateRelationshipsOfWay(177365318);
-            this.CreateRelationshipsOfWay(23964308);
-            this.CreateRelationshipsOfWay(39093169);
-            this.CreateRelationshipsOfWay(39093170);
-            this.CreateRelationshipsOfWay(183548865);
-            this.CreateRelationshipsOfWay(106260455);
-            this.CreateRelationshipsOfWay(220440831);
-            this.CreateRelationshipsOfWay(37853645);
-            this.CreateRelationshipsOfWay(37938973);
-            this.CreateRelationshipsOfWay(48739252);
-            this.CreateRelationshipsOfWay(109742311);
-            this.CreateRelationshipsOfWay(39580958);
-            this.CreateRelationshipsOfWay(227681212);
-            this.CreateRelationshipsOfWay(23964313);
-            this.CreateRelationshipsOfWay(23964319);
-            this.CreateRelationshipsOfWay(23964326);
-            this.CreateRelationshipsOfWay(38532045);
-            this.CreateRelationshipsOfWay(263482442);
-            this.CreateRelationshipsOfWay(24951330);
-            this.CreateRelationshipsOfWay(142236999);
-            this.CreateRelationshipsOfWay(142239111);
-            this.CreateRelationshipsOfWay(157102613);
-            this.CreateRelationshipsOfWay(185310802);
-            this.CreateRelationshipsOfWay(34332772);
-            this.CreateRelationshipsOfWay(140827279);
-            this.CreateRelationshipsOfWay(39093168);
-            this.CreateRelationshipsOfWay(77737642);
-            this.CreateRelationshipsOfWay(78185855);
-            this.CreateRelationshipsOfWay(85632746);
-            this.CreateRelationshipsOfWay(111192007);
-            this.CreateRelationshipsOfWay(125126705);
-            this.CreateRelationshipsOfWay(27658614);
-            this.CreateRelationshipsOfWay(27658684);
-            this.CreateRelationshipsOfWay(95403317);
-            this.CreateRelationshipsOfWay(79112036);
-            this.CreateRelationshipsOfWay(102185908);
+            CreateRelationshipsOfWay(188511699);
+            CreateRelationshipsOfWay(23964689);
+            CreateRelationshipsOfWay(27658584);
+            CreateRelationshipsOfWay(53577880);
+            CreateRelationshipsOfWay(48739269);
+            CreateRelationshipsOfWay(162195072);
+            CreateRelationshipsOfWay(27658625);
+            CreateRelationshipsOfWay(27658605);
+            CreateRelationshipsOfWay(34332773);
+            CreateRelationshipsOfWay(208675194);
+            CreateRelationshipsOfWay(48739267);
+            CreateRelationshipsOfWay(27658586);
+            CreateRelationshipsOfWay(23964693);
+            CreateRelationshipsOfWay(23964830);
+            CreateRelationshipsOfWay(183548861);
+            CreateRelationshipsOfWay(48533122);
+            CreateRelationshipsOfWay(183548854);
+            CreateRelationshipsOfWay(156665635);
+            CreateRelationshipsOfWay(209304409);
+            CreateRelationshipsOfWay(224783959);
+            CreateRelationshipsOfWay(201227737);
+            CreateRelationshipsOfWay(156665679);
+            CreateRelationshipsOfWay(156665691);
+            CreateRelationshipsOfWay(156665641);
+            CreateRelationshipsOfWay(201227736);
+            CreateRelationshipsOfWay(48739263);
+            CreateRelationshipsOfWay(156665689);
+            CreateRelationshipsOfWay(200772097);
+            CreateRelationshipsOfWay(189372921);
+            CreateRelationshipsOfWay(201735418);
+            CreateRelationshipsOfWay(110892444);
+            CreateRelationshipsOfWay(110891907);
+            CreateRelationshipsOfWay(201735419);
+            CreateRelationshipsOfWay(200772089);
+            CreateRelationshipsOfWay(200772093);
+            CreateRelationshipsOfWay(242047410);
+            CreateRelationshipsOfWay(175108116);
+            CreateRelationshipsOfWay(183544008);
+            CreateRelationshipsOfWay(183550844);
+            CreateRelationshipsOfWay(23964691);
+            CreateRelationshipsOfWay(108058488);
+            CreateRelationshipsOfWay(140827279);
+            CreateRelationshipsOfWay(162194016);
+            CreateRelationshipsOfWay(175147608);
+            CreateRelationshipsOfWay(177365318);
+            CreateRelationshipsOfWay(23964308);
+            CreateRelationshipsOfWay(39093169);
+            CreateRelationshipsOfWay(39093170);
+            CreateRelationshipsOfWay(183548865);
+            CreateRelationshipsOfWay(106260455);
+            CreateRelationshipsOfWay(220440831);
+            CreateRelationshipsOfWay(37853645);
+            CreateRelationshipsOfWay(37938973);
+            CreateRelationshipsOfWay(48739252);
+            CreateRelationshipsOfWay(109742311);
+            CreateRelationshipsOfWay(39580958);
+            CreateRelationshipsOfWay(227681212);
+            CreateRelationshipsOfWay(23964313);
+            CreateRelationshipsOfWay(23964319);
+            CreateRelationshipsOfWay(23964326);
+            CreateRelationshipsOfWay(38532045);
+            CreateRelationshipsOfWay(263482442);
+            CreateRelationshipsOfWay(24951330);
+            CreateRelationshipsOfWay(142236999);
+            CreateRelationshipsOfWay(142239111);
+            CreateRelationshipsOfWay(157102613);
+            CreateRelationshipsOfWay(185310802);
+            CreateRelationshipsOfWay(34332772);
+            CreateRelationshipsOfWay(140827279);
+            CreateRelationshipsOfWay(39093168);
+            CreateRelationshipsOfWay(77737642);
+            CreateRelationshipsOfWay(78185855);
+            CreateRelationshipsOfWay(85632746);
+            CreateRelationshipsOfWay(111192007);
+            CreateRelationshipsOfWay(125126705);
+            CreateRelationshipsOfWay(27658614);
+            CreateRelationshipsOfWay(27658684);
+            CreateRelationshipsOfWay(95403317);
+            CreateRelationshipsOfWay(79112036);
+            CreateRelationshipsOfWay(102185908);
         }
 
         /// <summary>
         /// Построение всего графа дорог
         /// </summary>
-        public void BuildGraph()
+        public static void BuildGraph()
         {
             List<long> allIDs = DBConnection.GetAllIntersectedWayID();
             for (int i = 0; i < allIDs.Count; i++)
             {
-                this.CreateRelationshipsOfWay(allIDs[i]);
+                CreateRelationshipsOfWay(allIDs[i]);
             }
         }
 
@@ -227,12 +218,12 @@ namespace Diploma.Models.Graph
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        public Node<Point> CreateNode(Point point)
+        public static Node<Point> CreateNode(Point point)
         {
-            Node<Point> pnt = this.GetNode(point.ID);
+            Node<Point> pnt = GetNode(point.ID);
             if (pnt == null)
             {
-                return _client.Cypher
+                return Client.Cypher
                     .Create("(p:Point {point})")
                     .WithParam("point", point)
                     .Return(p => p.As<Node<Point>>())
@@ -246,9 +237,9 @@ namespace Diploma.Models.Graph
         /// Создает связи и узлы на пути
         /// </summary>
         /// <param name="id">ID пути</param>
-        public void CreateRelationshipsOfWay(long id)
+        public static void CreateRelationshipsOfWay(long id)
         {
-            List<Line> lstLines = this.GetAllLinesFromWay(id);
+            List<Line> lstLines = GetAllLinesFromWay(id);
             for (int i = 0; i < lstLines.Count; i++)
             {
                 var source = lstLines[i].Points.First();
@@ -266,9 +257,9 @@ namespace Diploma.Models.Graph
                     MaxSpeed = lstLines[i].MaxSpeed,
                     Surface = lstLines[i].Surface
                 };
-                _client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+                Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
                 if (!lstLines[i].Oneway)
-                    _client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+                    Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
             }
         }
 
@@ -277,7 +268,7 @@ namespace Diploma.Models.Graph
         /// </summary>
         /// <param name="intersections">Все пересечения пути</param>
         /// <returns>ID точек пересечения на пути</returns>
-        public List<long> GetAllNodesOfIntersectionsOfWay(List<AllGraphNode> intersections)
+        public static List<long> GetAllNodesOfIntersectionsOfWay(List<AllGraphNode> intersections)
         {
             List<long> nodeIDs = new List<long>();
             for (int i = 0; i < intersections.Count; i++)
@@ -294,11 +285,11 @@ namespace Diploma.Models.Graph
         /// </summary>
         /// <param name="id">ID пути</param>
         /// <returns>Список линий, образующих путь</returns>
-        public List<Line> GetAllLinesFromWay(long id)
+        public static List<Line> GetAllLinesFromWay(long id)
         {
             List<Line> lstLines = new List<Line>();
             OSMWay way = OSMWay.Create(id);
-            List<long> allNodeRefsOnIntersections = this.GetAllNodesOfIntersectionsOfWay(DBConnection.GetAllIntersectionsOfWay(id));
+            List<long> allNodeRefsOnIntersections = GetAllNodesOfIntersectionsOfWay(DBConnection.GetAllIntersectionsOfWay(id));
             Line line = null;
             for (int i = 0; i < way.RefNodes.Count; i++)
             {
@@ -334,11 +325,11 @@ namespace Diploma.Models.Graph
         /// </summary>
         /// <param name="id">ID вершины</param>
         /// <returns>Узлы графа, смежные с данной</returns>
-        public List<Node<Point>> GetAllAdjacentNodes(long id)
+        public static List<Node<Point>> GetAllAdjacentNodes(long id)
         {
             try
             {
-                return _client.Cypher.Match("(n)-[r]->(m)")
+                return Client.Cypher.Match("(n)-[r]->(m)")
                             .Where((Point n) => n.ID == id)
                             .Return(m => m.As<Node<Point>>())
                             .Results
@@ -355,11 +346,11 @@ namespace Diploma.Models.Graph
         /// </summary>
         /// <param name="id">ID узла</param>
         /// <returns>Id and length</returns>
-        public List<NodeDist> GetAllAdjacentNodesInfo(long id)
+        public static List<NodeDist> GetAllAdjacentNodesInfo(long id)
         {
             try
             {
-                return _client.Cypher.Match("(n)-[r]->(m)")
+                return Client.Cypher.Match("(n)-[r]->(m)")
                             .Where((Point n) => n.ID == id)
                             .Return((m, r) => new NodeDist
                             {
@@ -380,11 +371,11 @@ namespace Diploma.Models.Graph
         /// </summary>
         /// <param name="id">ID узла</param>
         /// <returns>Узел или null, если узел не найден</returns>
-        public Node<Point> GetNode(long id)
+        public static Node<Point> GetNode(long id)
         {
             try
             {
-                return _client.Cypher.Match("(point:Point)")
+                return Client.Cypher.Match("(point:Point)")
                             .Where((Point point) => point.ID == id)
                             .Return(point => point.As<Node<Point>>())
                             .Results
@@ -401,11 +392,11 @@ namespace Diploma.Models.Graph
         /// </summary>
         /// <param name="id">ID узла</param>
         /// <returns>Данные об узле</returns>
-        public Point GetPoint(long id)
+        public static Point GetPoint(long id)
         {
             try
             {
-                return _client.Cypher.Match("(point:Point)")
+                return Client.Cypher.Match("(point:Point)")
                             .Where((Point point) => point.ID == id)
                             .Return(point => point.As<Point>())
                             .Results
@@ -423,11 +414,11 @@ namespace Diploma.Models.Graph
         /// <param name="source">Узел-источник</param>
         /// <param name="target">Конечный узел</param>
         /// <returns>Данные о ребре</returns>
-        public LineData GetLineDataBetweenNodes(long source, long target)
+        public static LineData GetLineDataBetweenNodes(long source, long target)
         {
             try
             {
-                return _client.Cypher.Match("(n)-[r]->(m)")
+                return Client.Cypher.Match("(n)-[r]->(m)")
                     .Where((Point n) => n.ID == source)
                     .AndWhere((Point m) => m.ID == target)
                     .Return(r => r.As<LineData>())
@@ -443,9 +434,9 @@ namespace Diploma.Models.Graph
         /// <summary>
         /// Создает индекс для атрибута узла - ID
         /// </summary>
-        public void CreateIndex()
+        public static void CreateIndex()
         {
-            _client.Cypher
+            Client.Cypher
                 .Create("INDEX ON :Point(ID)")
                 .ExecuteWithoutResults();
         }
@@ -453,13 +444,28 @@ namespace Diploma.Models.Graph
         /// <summary>
         /// Создает ограничение на уникальность атрибута узла - ID
         /// </summary>
-        public void CreateUniqueConstraint()
+        public static void CreateUniqueConstraint()
         {
-            _client.Cypher
+            Client.Cypher
                 .Create("CONSTRAINT ON (point:Point) ASSERT point.ID IS UNIQUE")
                 .ExecuteWithoutResults();
         }
 
-        private GraphClient _client;
+        public static GraphClient Client
+        {
+            get
+            {
+                if (_client == null)
+                {
+                    _client = new GraphClient(new Uri("http://localhost:7474/db/data"));
+                    _client.Connect();
+                    return _client;
+                }
+                else
+                    return _client;
+            }
+        }
+
+        private static GraphClient _client;
     }
 }

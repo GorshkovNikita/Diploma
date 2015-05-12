@@ -36,7 +36,7 @@ namespace Diploma.Controllers
             //List<long> lst = DBConnection.GetNodesInWayBetween(23964689, 259794497, 1741243719);
             //graph.BuildTestGraphFromWiki();
             //Path path = DijkstraAlgorithm.RunAlgo(new GraphIterator(graph), 1939502615, 259791149);
-            Path path = DijkstraAlgorithm.RunAlgo(new GraphIterator(graph), 1939502615, 2086140685);
+            Path path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), 1939502615, 2086140685);
             //List<NodeDist> node = graph.GetAllAdjacentNodesInfo(2195315963);
             //graph.BuildTestGraph();
             //graph.BuildGraph();

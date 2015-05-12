@@ -9,9 +9,8 @@ namespace Diploma.Models.Graph
 {
     public class GraphIterator
     {
-        public GraphIterator(Graph graph)
+        public GraphIterator()
         {
-            _graph = graph;
             Current = null;
             Parent = null;
             AdjacentNodes = null;
@@ -26,7 +25,7 @@ namespace Diploma.Models.Graph
         {
             double minLength = this.OpenedNodes.Min(n => n.LengthFromSource);
             this.Current = this.OpenedNodes.Where(n => n.LengthFromSource == minLength).First();
-            this.AdjacentNodes = _graph.GetAllAdjacentNodesInfo(Current.ID);
+            this.AdjacentNodes = Graph.GetAllAdjacentNodesInfo(Current.ID);
         }
 
         /// <summary>
@@ -37,11 +36,11 @@ namespace Diploma.Models.Graph
         {
             this.Current = new NodeData
             {
-                ID = _graph.GetNode(id).Data.ID,
+                ID = Graph.GetNode(id).Data.ID,
                 ParentID = 0,
                 LengthFromSource = 0
             };
-            this.AdjacentNodes = _graph.GetAllAdjacentNodesInfo(id);
+            this.AdjacentNodes = Graph.GetAllAdjacentNodesInfo(id);
         }
 
         /// <summary>
@@ -107,10 +106,10 @@ namespace Diploma.Models.Graph
             Path path = new Path();
             path.Length = ClosedNodes.Last().LengthFromSource;
             NodeData nodeData = ClosedNodes.Last();
-            path.Points.Insert(0, _graph.GetPoint(nodeData.ID));
+            path.Points.Insert(0, Graph.GetPoint(nodeData.ID));
             while (nodeData.ParentID != 0)
             {
-                path.Points.Insert(0, _graph.GetPoint(nodeData.ParentID));
+                path.Points.Insert(0, Graph.GetPoint(nodeData.ParentID));
                 nodeData = ClosedNodes.Where(n => n.ID == nodeData.ParentID).First();
             }
             return path;
@@ -125,16 +124,16 @@ namespace Diploma.Models.Graph
             Path path = new Path();
             path.Length = ClosedNodes.Last().LengthFromSource;
             NodeData nodeData = ClosedNodes.Last();
-            path.Points.Insert(0, _graph.GetPoint(nodeData.ID));
+            path.Points.Insert(0, Graph.GetPoint(nodeData.ID));
             while (nodeData.ParentID != 0)
             {
-                LineData lineData = _graph.GetLineDataBetweenNodes(nodeData.ParentID, nodeData.ID);
+                LineData lineData = Graph.GetLineDataBetweenNodes(nodeData.ParentID, nodeData.ID);
                 List<long> ls = DBConnection.GetNodesInWayBetween(lineData.WayID, nodeData.ParentID, nodeData.ID);
                 for (int i = ls.Count - 1; i >= 0; i--)
                 {
                     path.Points.Insert(0, new Point(OSMNode.Create(ls[i])));
                 }
-                path.Points.Insert(0, _graph.GetPoint(nodeData.ParentID));
+                path.Points.Insert(0, Graph.GetPoint(nodeData.ParentID));
                 nodeData = ClosedNodes.Where(n => n.ID == nodeData.ParentID).First();
             }
             return path;
@@ -160,9 +159,5 @@ namespace Diploma.Models.Graph
         /// Закрытый список узлов (уже пройденные)
         /// </summary>
         public List<NodeData> ClosedNodes { get; set; }
-        /// <summary>
-        /// Граф
-        /// </summary>
-        private Graph _graph;
     }
 }
