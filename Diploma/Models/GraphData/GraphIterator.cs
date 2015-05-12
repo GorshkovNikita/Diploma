@@ -12,7 +12,7 @@ namespace Diploma.Models.GraphData
         public GraphIterator()
         {
             Current = null;
-            Parent = null;
+            //Parent = null;
             AdjacentNodes = null;
             OpenedNodes = new List<NodeData>();
             ClosedNodes = new List<NodeData>();
@@ -116,35 +116,11 @@ namespace Diploma.Models.GraphData
         }
 
         /// <summary>
-        /// Создает конечный путь, содержащий абсолютно все точки, включая те, которых нет в графе (берутся из БД с инфой о точках)
-        /// </summary>
-        /// <returns>Путь</returns>
-        public Path CreateFullPath()
-        {
-            Path path = new Path();
-            path.Length = ClosedNodes.Last().LengthFromSource;
-            NodeData nodeData = ClosedNodes.Last();
-            path.Points.Insert(0, Graph.GetPoint(nodeData.ID));
-            while (nodeData.ParentID != 0)
-            {
-                LineData lineData = Graph.GetLineDataBetweenNodes(nodeData.ParentID, nodeData.ID);
-                List<long> ls = DBConnection.GetNodesInWayBetween(lineData.WayID, nodeData.ParentID, nodeData.ID);
-                for (int i = ls.Count - 1; i >= 0; i--)
-                {
-                    path.Points.Insert(0, new Point(OSMNode.Create(ls[i])));
-                }
-                path.Points.Insert(0, Graph.GetPoint(nodeData.ParentID));
-                nodeData = ClosedNodes.Where(n => n.ID == nodeData.ParentID).First();
-            }
-            return path;
-        }
-
-        /// <summary>
         /// Текущий узел
         /// </summary>
         public NodeData Current { get; private set; }
         /// <summary>
-        /// Родитель текущего узла
+        /// Родитель текущего узла (ПОКА НИКАК НЕ ИСПОЛЬЗУЕТСЯ)
         /// </summary>
         public NodeData Parent { get; private set; }
         /// <summary>

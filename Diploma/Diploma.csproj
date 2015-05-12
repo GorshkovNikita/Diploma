@@ -175,6 +175,7 @@
     <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Extended_Classes\Distance.cs" />
     <Compile Include="Models\GraphData\GraphIterator.cs" />
+    <Compile Include="Models\GraphData\KShortestGraphIterator.cs" />
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\OSMDataClasses.designer.cs">
       <AutoGen>True</AutoGen>
