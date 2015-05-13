@@ -54,6 +54,7 @@ namespace Diploma.Models.GraphData
             this.PossiblePaths.Remove(pathWithMinLength);
         }
 
+
         /// <summary>
         /// Получает все элементы корня. которые нужно игнорировать
         /// </summary>

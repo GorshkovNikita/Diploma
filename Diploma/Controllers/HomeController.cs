@@ -14,7 +14,7 @@ namespace Diploma.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int index = 0)
         {
             //List<Point> allTrafficSignals = XmlHelper.GetAllTrafficSignals();
             /*Line street = XmlHelper.FindStreet("МКАД");
@@ -36,7 +36,7 @@ namespace Diploma.Controllers
             //Graph.BuildTestGraphFromWiki();
             //Path path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), 1939502615, 259791149);
             //Path path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), 1939502615, 2086140685).GetFullPath();
-            List<Path> lst = KShortestPathsAlgorithm.RunAlgo(new KShortestGraphIterator(), 1, 5, 5);
+            List<Path> lst = KShortestPathsAlgorithm.RunAlgo(new KShortestGraphIterator(), 1939502615, 2086140685, 5);
             //List<NodeDist> node = graph.GetAllAdjacentNodesInfo(2195315963);
             //graph.BuildTestGraph();
             //graph.BuildGraph();
@@ -47,7 +47,7 @@ namespace Diploma.Controllers
             //graph.CreateIndex();
             //graph.CreateUniqueConstraint();
             //List<long> lst = DBConnection.GetAllIntersectedWayID();
-            return View();//path);
+            return View(lst[index].GetFullPath());
         }
     }
 }

@@ -46,15 +46,15 @@ namespace Diploma.Algorithms
                         continue;
                     }
                     Path possiblePath = subpath.JoinPath(s);
-                    if (!graph.FoundedPaths.Any(p => p.Equals(possiblePath)))
+                    if ((!graph.PossiblePaths.Any(p => p.Equals(possiblePath))) && (!graph.FoundedPaths.Any(p => p.Equals(possiblePath))))
                     {
                         graph.PossiblePaths.Add(possiblePath);
-                        graph.MoveFromPossibleToFounded();
                     }
                     // очищаем удаленные ребра
                     graph.DeletedEdges.Clear();
                     graph.RootNodes.Clear();
                 }
+                graph.MoveFromPossibleToFounded();
             }
             return graph.FoundedPaths;
         }
