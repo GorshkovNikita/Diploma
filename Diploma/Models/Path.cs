@@ -7,7 +7,7 @@ using Diploma.Models.GraphData;
 
 namespace Diploma.Models
 {
-    public class Path
+    public class Path //: IEquatable<Path>
     {
         public Path()
         {

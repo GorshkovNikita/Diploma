@@ -34,15 +34,27 @@ namespace Diploma.Algorithms
                         graph.DeletedEdges.Add(subpath.Points[i].ID, graph.FoundedPaths[graph.LastSubpathIndex].Points[i + 1].ID);
                     }
                     graph.GetRootNodes(subpath);
-                    Path s = DijkstraAlgorithm.RunAlgo(new GraphIterator(graph.RootNodes, graph.DeletedEdges), subpath.Points[i].ID, target);
+                    Path s;
+                    try
+                    {
+                        s = DijkstraAlgorithm.RunAlgo(new GraphIterator(graph.RootNodes, graph.DeletedEdges), subpath.Points[i].ID, target);
+                    }
+                    catch
+                    {
+                        graph.DeletedEdges.Clear();
+                        graph.RootNodes.Clear();
+                        continue;
+                    }
                     Path possiblePath = subpath.JoinPath(s);
-                    graph.PossiblePaths.Add(possiblePath);
-                    graph.MoveFromPossibleToFounded();
+                    if (!graph.FoundedPaths.Any(p => p.Equals(possiblePath)))
+                    {
+                        graph.PossiblePaths.Add(possiblePath);
+                        graph.MoveFromPossibleToFounded();
+                    }
                     // очищаем удаленные ребра
                     graph.DeletedEdges.Clear();
+                    graph.RootNodes.Clear();
                 }
-
-                
             }
             return graph.FoundedPaths;
         }
