@@ -16,7 +16,7 @@ namespace DiplomaTest
         {
             bool actualResult = path1.Equals(path2);
 
-            Assert.AreEqual(actualResult, expectedResult);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         public IEnumerable<TestCaseData> EqualsCases()

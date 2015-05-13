@@ -11,8 +11,63 @@ namespace Diploma.Models
     {
         public Path()
         {
-            Points = new List<Point>();
-            IsFull = false;
+            this.InitPath();
+        }
+
+        /// <summary>
+        /// Конструктор пути из существующих точек
+        /// </summary>
+        /// <param name="points"></param>
+        public Path(List<Point> points)
+        {
+            this.InitPath();
+            for (int i = 0; i < points.Count; i++)
+            {
+                this.Points.Add(points[i]);
+            }
+            this.CalculateLength();
+        }
+
+        /// <summary>
+        /// Инициализирует путь начальными данными
+        /// </summary>
+        private void InitPath()
+        {
+            this.Points = new List<Point>();
+            this.Length = 0;
+            this.IsFull = false;
+        }
+
+        /// <summary>
+        /// Соединение 2 путей
+        /// </summary>
+        /// <param name="path">Присоединяемый путь</param>
+        /// <returns>Соединенный путь или null</returns>
+        public Path JoinPath(Path path)
+        {
+            if (this.Points.Last().ID == path.Points.First().ID)
+            {
+                this.Length = 0;
+                path.Points.RemoveAt(0);
+                this.Points.AddRange(path.Points);
+                this.CalculateLength();
+                return this;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Считает длину пути
+        /// </summary>
+        public void CalculateLength()
+        {
+            if (Length == 0)
+            {
+                for (int i = 1; i < this.Points.Count; i++)
+                {
+                    Length += Graph.GetLineDataBetweenNodes(this.Points[i - 1].ID, this.Points[i].ID).Length;
+                }
+            }
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace Diploma.Algorithms
             // добавляем егов  список найденных
             graph.FoundedPaths.Add(shortestPath);
             // цикл по k, то есть пока не найдем K субоптимальных путей
-            for (int k = 2; k < K; k++)
+            for (int k = 1; k < K; k++)
             {
                 // цикл по всем вершинам k-1 пути
                 for (int i = 0; i < graph.FoundedPaths[k - 1].Points.Count - 1; i++)
@@ -27,18 +27,24 @@ namespace Diploma.Algorithms
                     {
                         subpath.Points.Add(graph.FoundedPaths[k - 1].Points[j]);
                     }
-                    // если подпуть совпадает с любым из найденных, то принимаем ребро i - i+1 = infinity
+                    // если подпуть совпадает с любым из найденных, то принимаем ребро (i, i+1) = infinity
                     if (graph.CheckSubpath(subpath))
                     {
                         // удаляем ребро
                         graph.DeletedEdges.Add(subpath.Points[i].ID, graph.FoundedPaths[graph.LastSubpathIndex].Points[i + 1].ID);
                     }
+                    graph.GetRootNodes(subpath);
+                    Path s = DijkstraAlgorithm.RunAlgo(new GraphIterator(graph.RootNodes, graph.DeletedEdges), subpath.Points[i].ID, target);
+                    Path possiblePath = subpath.JoinPath(s);
+                    graph.PossiblePaths.Add(possiblePath);
+                    graph.MoveFromPossibleToFounded();
+                    // очищаем удаленные ребра
+                    graph.DeletedEdges.Clear();
                 }
 
-                // очищаем удаленные ребра
-                graph.DeletedEdges.Clear();
+                
             }
-            return graph.PossiblePaths;
+            return graph.FoundedPaths;
         }
     }
 }

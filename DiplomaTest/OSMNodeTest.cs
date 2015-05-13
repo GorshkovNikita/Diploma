@@ -15,11 +15,11 @@ namespace DiplomaTest
         public void CreateTest(Int64 id, object[] expectedData)
         {
             OSMNode node = OSMNode.Create(id);
-            Assert.AreEqual(id, expectedData[0], "IDs are not equal!");
-            Assert.AreEqual(node.Type, expectedData[1], "Types are not equal!");
-            Assert.AreEqual(node.Latitude, expectedData[2], "Latitudes are not equal!");
-            Assert.AreEqual(node.Longitude, expectedData[3], "Longitudes are not equal!");
-            Assert.AreEqual(node.Tags, expectedData[4], "Tags are not equal!");
+            Assert.AreEqual(expectedData[0], id, "IDs are not equal!");
+            Assert.AreEqual(expectedData[1], node.Type, "Types are not equal!");
+            Assert.AreEqual(expectedData[2], node.Latitude, "Latitudes are not equal!");
+            Assert.AreEqual(expectedData[3], node.Longitude, "Longitudes are not equal!");
+            Assert.AreEqual(expectedData[4], node.Tags, "Tags are not equal!");
         }
 
         public IEnumerable<TestCaseData> CreateCases()

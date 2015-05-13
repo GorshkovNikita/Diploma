@@ -23,21 +23,24 @@ namespace Diploma.Algorithms
             {
                 for (int i = 0; i < graph.AdjacentNodes.Count; i++)
                 {
-                    if (!graph.IsClosedNodeListContainsNode(graph.AdjacentNodes[i].ID))
+                    if (!graph.IsDeletedEdgeContainsEdge(graph.Current.ID, graph.AdjacentNodes[i].ID))
                     {
-                        if (!graph.IsOpenedNodeListContainsNode(graph.AdjacentNodes[i].ID))
+                        if (!graph.IsClosedNodeListContainsNode(graph.AdjacentNodes[i].ID))
                         {
-                            graph.OpenedNodes.Add(
-                                new NodeData
-                                {
-                                    ID = graph.AdjacentNodes[i].ID,
-                                    LengthFromSource = graph.AdjacentNodes[i].Length + graph.Current.LengthFromSource,
-                                    ParentID = graph.Current.ID
-                                });
-                        }
-                        else
-                        {
-                            graph.UpdateLength(graph.AdjacentNodes[i]);
+                            if (!graph.IsOpenedNodeListContainsNode(graph.AdjacentNodes[i].ID))
+                            {
+                                graph.OpenedNodes.Add(
+                                    new NodeData
+                                    {
+                                        ID = graph.AdjacentNodes[i].ID,
+                                        LengthFromSource = graph.AdjacentNodes[i].Length + graph.Current.LengthFromSource,
+                                        ParentID = graph.Current.ID
+                                    });
+                            }
+                            else
+                            {
+                                graph.UpdateLength(graph.AdjacentNodes[i]);
+                            }
                         }
                     }
                 }

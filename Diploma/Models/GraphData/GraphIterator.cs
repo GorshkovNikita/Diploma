@@ -11,11 +11,35 @@ namespace Diploma.Models.GraphData
     {
         public GraphIterator()
         {
-            Current = null;
-            //Parent = null;
-            AdjacentNodes = null;
-            OpenedNodes = new List<NodeData>();
-            ClosedNodes = new List<NodeData>();
+            this.InitGraphIterator();
+        }
+
+        /// <summary>
+        /// Конструктор, добавляющий в закрытый список игнорируемые точки и создающий словарь с игнорируемыми ребрами
+        /// </summary>
+        /// <param name="closedNodes">Игнорируемые точки</param>
+        /// <param name="deletedEdges">Игнорируемые ребра</param>
+        public GraphIterator(List<NodeData> closedNodes, Dictionary<long, long> deletedEdges)
+        {
+            this.InitGraphIterator();
+            for (int i = 0; i < closedNodes.Count; i++)
+            {
+                this.ClosedNodes.Add(closedNodes[i]);
+            }
+            this.DeletedEdges = deletedEdges;
+        }
+
+        /// <summary>
+        /// Инициализирует итератор начальными данными
+        /// </summary>
+        private void InitGraphIterator()
+        {
+            this.Current = null;
+            this.Parent = null;
+            this.AdjacentNodes = null;
+            this.OpenedNodes = new List<NodeData>();
+            this.ClosedNodes = new List<NodeData>();
+            this.DeletedEdges = new Dictionary<long, long>();
         }
 
         /// <summary>
@@ -112,7 +136,29 @@ namespace Diploma.Models.GraphData
                 path.Points.Insert(0, Graph.GetPoint(nodeData.ParentID));
                 nodeData = ClosedNodes.Where(n => n.ID == nodeData.ParentID).First();
             }
+            //path.CalculateLength();
             return path;
+        }
+
+        /// <summary>
+        /// Проверяет находится ли заданное ребро в словаре удаленных ребер
+        /// </summary>
+        /// <param name="source">Вершина-источник</param>
+        /// <param name="target">Конечная вершина</param>
+        /// <returns>Находится ли? true/false</returns>
+        public bool IsDeletedEdgeContainsEdge(long source, long target)
+        {
+            try
+            {
+                if (this.DeletedEdges[source] == target)
+                    return true;
+                else
+                    return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -135,5 +181,9 @@ namespace Diploma.Models.GraphData
         /// Закрытый список узлов (уже пройденные)
         /// </summary>
         public List<NodeData> ClosedNodes { get; set; }
+        /// <summary>
+        /// Ребра, которые необходимо игнорировать
+        /// </summary>
+        public Dictionary<long, long> DeletedEdges { get; set; }
     }
 }
