@@ -439,8 +439,8 @@ namespace Diploma.Models.GraphData
         /// <returns>Найденная точка</returns>
         public static Point GetNearest(Point point)
         {
-            //try
-            //{
+            try
+            {
                 double latLowBound = point.Latitude - 0.002;
                 double latHighBound = point.Latitude + 0.002;
                 double lonLowBound = point.Longitude - 0.002;
@@ -453,11 +453,11 @@ namespace Diploma.Models.GraphData
                     .Return(n => n.As<Point>())
                     .Results
                     .First();
-            //}
-            //catch
-            //{
-            //    return null;
-            //}
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>

@@ -56,9 +56,32 @@ namespace Diploma.Controllers
         {
             if (Request.IsAjaxRequest())
             {
+                CurrentConfig.MarkersNumber++;
                 Point point = Graph.GetNearest(new Point(Convert.ToDouble(lat, CultureInfo.InvariantCulture), Convert.ToDouble(lon, CultureInfo.InvariantCulture)));
                 var jsonPoint = new JavaScriptSerializer().Serialize(point);
+                if (CurrentConfig.MarkersNumber == 2)
+                {
+                    CurrentConfig.MarkersNumber = 0;
+                    CurrentConfig.Path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
+                    CurrentConfig.PointStartID = 0;
+                }
+                else if (CurrentConfig.MarkersNumber == 1)
+                {
+                    CurrentConfig.Path = null;
+                    CurrentConfig.PointStartID = point.ID;
+                }
                 return jsonPoint;
+            }
+            else
+                return null;
+        }
+
+        public string GetFullPath()
+        {
+            if (CurrentConfig.Path != null)
+            {
+                var jsonPath = new JavaScriptSerializer().Serialize(CurrentConfig.Path.GetFullPath().Points);
+                return jsonPath;
             }
             else
                 return null;
