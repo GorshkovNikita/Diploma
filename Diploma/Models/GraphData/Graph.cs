@@ -207,6 +207,7 @@ namespace Diploma.Models.GraphData
         public static void BuildGraph()
         {
             List<long> allIDs = DBConnection.GetAllIntersectedWayID();
+            int b = allIDs.IndexOf(47055144);
             for (int i = 0; i < allIDs.Count; i++)
             {
                 CreateRelationshipsOfWay(allIDs[i]);
@@ -429,6 +430,34 @@ namespace Diploma.Models.GraphData
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Находит ближайшую точку к заданной
+        /// </summary>
+        /// <param name="point">Заданная точка</param>
+        /// <returns>Найденная точка</returns>
+        public static Point GetNearest(Point point)
+        {
+            //try
+            //{
+                double latLowBound = point.Latitude - 0.002;
+                double latHighBound = point.Latitude + 0.002;
+                double lonLowBound = point.Longitude - 0.002;
+                double lonHighBound = point.Longitude + 0.002;
+                return Client.Cypher.Match("(n)")
+                    .Where((Point n) => n.Latitude > latLowBound)
+                    .AndWhere((Point n) => n.Latitude < latHighBound)
+                    .AndWhere((Point n) => n.Longitude > lonLowBound)
+                    .AndWhere((Point n) => n.Longitude < lonHighBound)
+                    .Return(n => n.As<Point>())
+                    .Results
+                    .First();
+            //}
+            //catch
+            //{
+            //    return null;
+            //}
         }
 
         /// <summary>

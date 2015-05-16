@@ -11,3 +11,19 @@
     }).addTo(map);
     var path = L.polyline(line, { color: 'red' }).addTo(map);
 }
+
+function displayMap() {
+    var map = L.map('map').setView(L.latLng(55.6003, 37.6230), 13);
+    L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-i875mjb7/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 18
+    }).addTo(map);
+}
+
+function getLatLng(e) {
+    alert(e.latlng);
+    $.getJSON("http://localhost:58377/Home/Nearest?lat=" + e.latlng.lat + "&lon=" + e.latlng.lng, function (data) {
+        L.marker(L.latLng(parseFloat(data["Latitude"]), parseFloat(data["Longitude"]))).addTo(map);
+    });
+}
+

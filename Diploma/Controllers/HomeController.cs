@@ -9,6 +9,7 @@ using Diploma.Models;
 using Diploma.Models.GraphData;
 using Diploma.Algorithms;
 using Neo4jClient;
+using System.Web.Script.Serialization;
 
 namespace Diploma.Controllers
 {
@@ -36,7 +37,7 @@ namespace Diploma.Controllers
             //Graph.BuildTestGraphFromWiki();
             //Path path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), 1939502615, 259791149);
             //Path path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), 1939502615, 2086140685).GetFullPath();
-            List<Path> lst = KShortestPathsAlgorithm.RunAlgo(new KShortestGraphIterator(), 1939502615, 2086140685, 5);
+            //List<Path> lst = KShortestPathsAlgorithm.RunAlgo(new KShortestGraphIterator(), 1939502615, 2086140685, 5);
             //List<NodeDist> node = graph.GetAllAdjacentNodesInfo(2195315963);
             //graph.BuildTestGraph();
             //graph.BuildGraph();
@@ -47,7 +48,20 @@ namespace Diploma.Controllers
             //graph.CreateIndex();
             //graph.CreateUniqueConstraint();
             //List<long> lst = DBConnection.GetAllIntersectedWayID();
-            return View(lst[index].GetFullPath());
+            //Graph.BuildGraph();
+            return View(new Path());//lst[index].GetFullPath());
+        }
+
+        public string Nearest(string lat, string lon)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                Point point = Graph.GetNearest(new Point(Convert.ToDouble(lat, CultureInfo.InvariantCulture), Convert.ToDouble(lon, CultureInfo.InvariantCulture)));
+                var jsonPoint = new JavaScriptSerializer().Serialize(point);
+                return jsonPoint;
+            }
+            else
+                return null;
         }
     }
 }
