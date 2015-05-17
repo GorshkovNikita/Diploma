@@ -206,9 +206,13 @@ namespace Diploma.Models.GraphData
         /// </summary>
         public static void BuildGraph()
         {
+            // 8942
+            // 6174090
             List<long> allIDs = DBConnection.GetAllIntersectedWayID();
-            int b = allIDs.IndexOf(47055144);
-            for (int i = 0; i < allIDs.Count; i++)
+            allIDs.Sort();
+            int b = allIDs.IndexOf(6174090);
+            long c = allIDs[113];
+            for (int i = 8942; i < allIDs.Count; i++)
             {
                 CreateRelationshipsOfWay(allIDs[i]);
             }
@@ -245,22 +249,25 @@ namespace Diploma.Models.GraphData
             {
                 var source = lstLines[i].Points.First();
                 var target = lstLines[i].Points.Last();
-                NodeReference<Point> refSource = CreateNode(source).Reference;
-                NodeReference<Point> refTarget = CreateNode(target).Reference;
-                LineData lineData = new LineData
+                if (GetLineDataBetweenNodes(source.ID, target.ID) == null)
                 {
-                    WayID = lstLines[i].WayID,
-                    Length = lstLines[i].Length,
-                    Lanes = lstLines[i].Lanes,
-                    Name = lstLines[i].Name,
-                    Oneway = lstLines[i].Oneway,
-                    RoadType = lstLines[i].RoadType,
-                    MaxSpeed = lstLines[i].MaxSpeed,
-                    Surface = lstLines[i].Surface
-                };
-                Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
-                if (!lstLines[i].Oneway)
-                    Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+                    NodeReference<Point> refSource = CreateNode(source).Reference;
+                    NodeReference<Point> refTarget = CreateNode(target).Reference;
+                    LineData lineData = new LineData
+                    {
+                        WayID = lstLines[i].WayID,
+                        Length = lstLines[i].Length,
+                        Lanes = lstLines[i].Lanes,
+                        Name = lstLines[i].Name,
+                        Oneway = lstLines[i].Oneway,
+                        RoadType = lstLines[i].RoadType,
+                        MaxSpeed = lstLines[i].MaxSpeed,
+                        Surface = lstLines[i].Surface
+                    };
+                    Client.CreateRelationship(refSource, new GraphEdge(refTarget, lineData));
+                    if (!lstLines[i].Oneway)
+                        Client.CreateRelationship(refTarget, new GraphEdge(refSource, lineData));
+                }
             }
         }
 

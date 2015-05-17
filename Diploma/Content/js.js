@@ -1,11 +1,11 @@
 ﻿function drawPath(array) {
     var line = new Array;
-    for (var i = 0; i < array.length; i++)
-    {
+    for (var i = 0; i < array.length; i++) {
         line.push(L.latLng(array[i].Latitude, array[i].Longitude));
     }
-    var map = L.map('map').setView(L.latLng(array[0].Latitude, array[0].Longitude), 13);
-    var path = L.polyline(line, { color: 'red' }).addTo(map);
+    polyLine = L.polyline(line, { color: 'red' });
+    map.addLayer(polyLine);
+    layers.push(polyLine);
 }
 
 function displayMap() {
@@ -19,20 +19,24 @@ function displayMap() {
 
 function getLatLng(e) {
     $.getJSON("http://localhost:58377/Home/Nearest?lat=" + e.latlng.lat + "&lon=" + e.latlng.lng, function (data) {
-        if (data != null)
-            L.marker(L.latLng(parseFloat(data["Latitude"]), parseFloat(data["Longitude"]))).addTo(map);
+        if (data != null) {
+            //map.removeLayer(polyline);
+            marker = L.marker(L.latLng(parseFloat(data["Latitude"]), parseFloat(data["Longitude"])));
+            map.addLayer(marker);
+            layers.push(marker);
+        }
         else
             alert("Точка не найдена!");
         $.getJSON("http://localhost:58377/Home/GetFullPath", function (data) {
             if (data != null) {
-                var line = new Array;
-                for (var i = 0; i < data.length; i++) {
-                    line.push(L.latLng(data[i].Latitude, data[i].Longitude));
-                }
-                L.polyline(line, { color: 'red' }).addTo(map);
+                drawPath(data);
             }
         });
     });
-    
+}
+
+function mapClear(e) {
+    map.removeLayer(polyLine);
+    map.removeLayer(marker);
 }
 

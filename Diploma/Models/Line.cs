@@ -30,7 +30,14 @@ namespace Diploma.Models
             this.CalcLength();
             RoadType = way.Tags["highway"];
             if (way.HasTag("lanes"))
-                Lanes = Convert.ToInt32(way.Tags["lanes"]);
+                try
+                {
+                    Lanes = Convert.ToInt32(way.Tags["lanes"]);
+                }
+                catch
+                {
+                    Lanes = 2;
+                }
             else
                 Lanes = 0;
             if (way.HasTag("name"))

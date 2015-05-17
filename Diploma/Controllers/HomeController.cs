@@ -49,6 +49,13 @@ namespace Diploma.Controllers
             //graph.CreateUniqueConstraint();
             //List<long> lst = DBConnection.GetAllIntersectedWayID();
             //Graph.BuildGraph();
+            //Graph.CreateRelationshipsOfWay(188511699);
+            //Graph.CreateRelationshipsOfWay(23964689);
+            //Graph.CreateRelationshipsOfWay(188511699);
+            //Graph.CreateRelationshipsOfWay(23964689);
+            //Graph.CreateRelationshipsOfWay(23964689);
+            //Graph.CreateRelationshipsOfWay(188511699);
+            //Graph.CreateRelationshipsOfWay(23964689);
             return View(new Path());//lst[index].GetFullPath());
         }
 
@@ -62,8 +69,18 @@ namespace Diploma.Controllers
                 if (CurrentConfig.MarkersNumber == 2)
                 {
                     CurrentConfig.MarkersNumber = 0;
-                    CurrentConfig.Path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
-                    CurrentConfig.PointStartID = 0;
+                    try
+                    {
+                        CurrentConfig.Path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
+                        CurrentConfig.PointStartID = 0;
+                    }
+                    catch
+                    {
+                        CurrentConfig.MarkersNumber = 1;
+                        //CurrentConfig.PointStartID = 0;
+                        //return "Невозможно построить маршрут!";
+                    }
+                    
                 }
                 else if (CurrentConfig.MarkersNumber == 1)
                 {
