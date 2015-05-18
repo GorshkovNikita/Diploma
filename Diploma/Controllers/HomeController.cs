@@ -48,7 +48,7 @@ namespace Diploma.Controllers
             //graph.CreateIndex();
             //graph.CreateUniqueConstraint();
             //List<long> lst = DBConnection.GetAllIntersectedWayID();
-            //Graph.BuildGraph();
+            Graph.BuildGraph();
             //Graph.CreateRelationshipsOfWay(188511699);
             //Graph.CreateRelationshipsOfWay(23964689);
             //Graph.CreateRelationshipsOfWay(188511699);

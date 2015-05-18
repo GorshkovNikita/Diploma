@@ -210,9 +210,7 @@ namespace Diploma.Models.GraphData
             // 6174090
             List<long> allIDs = DBConnection.GetAllIntersectedWayID();
             allIDs.Sort();
-            int b = allIDs.IndexOf(6174090);
-            long c = allIDs[113];
-            for (int i = 8942; i < allIDs.Count; i++)
+            for (int i = 0; i < allIDs.Count; i++)
             {
                 CreateRelationshipsOfWay(allIDs[i]);
             }
