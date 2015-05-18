@@ -49,7 +49,7 @@ namespace Diploma.Controllers
             //graph.CreateIndex();
             //graph.CreateUniqueConstraint();
             //List<long> lst = DBConnection.GetAllIntersectedWayID();
-            //Graph.BuildGraph();
+            //Graph.BuildTestGraph();
             //Graph.CreateRelationshipsOfWay(188511699);
             //Graph.CreateRelationshipsOfWay(23964689);
             //Graph.CreateRelationshipsOfWay(188511699);
@@ -77,8 +77,9 @@ namespace Diploma.Controllers
                         try
                         {
                             var watch = Stopwatch.StartNew();
-                            CurrentConfig.Path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
-                            //CurrentConfig.Path = AStar.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
+                            //CurrentConfig.Path = KShortestPaths.RunAlgo(new KShortestGraphIterator(), CurrentConfig.PointStartID, point.ID, 5)[3];
+                            //CurrentConfig.Path = Dijkstra.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
+                            CurrentConfig.Path = AStar.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
                             CurrentConfig.PointStartID = 0;
                             watch.Stop();
                             var elapsedMs = watch.Elapsed.TotalSeconds;

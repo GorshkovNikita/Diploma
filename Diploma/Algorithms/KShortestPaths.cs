@@ -7,12 +7,12 @@ using Diploma.Models.GraphData;
 
 namespace Diploma.Algorithms
 {
-    public class KShortestPathsAlgorithm
+    public class KShortestPaths
     {
         public static List<Path> RunAlgo(KShortestGraphIterator graph, long source, long target, int K)
         {
             // находим кратчайший
-            Path shortestPath = DijkstraAlgorithm.RunAlgo(new GraphIterator(), source, target);
+            Path shortestPath = AStar.RunAlgo(new GraphIterator(), source, target);
             // добавляем егов  список найденных
             graph.FoundedPaths.Add(shortestPath);
             // цикл по k, то есть пока не найдем K субоптимальных путей
@@ -37,7 +37,7 @@ namespace Diploma.Algorithms
                     Path s;
                     try
                     {
-                        s = DijkstraAlgorithm.RunAlgo(new GraphIterator(graph.RootNodes, graph.DeletedEdges), subpath.Points[i].ID, target);
+                        s = AStar.RunAlgo(new GraphIterator(graph.RootNodes, graph.DeletedEdges), subpath.Points[i].ID, target);
                     }
                     catch
                     {

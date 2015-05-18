@@ -164,8 +164,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\AStar.cs" />
-    <Compile Include="Algorithms\DijkstraAlgorithm.cs" />
-    <Compile Include="Algorithms\KShortestPathsAlgorithm.cs" />
+    <Compile Include="Algorithms\Dijkstra.cs" />
+    <Compile Include="Algorithms\KShortestPaths.cs" />
     <Compile Include="Algorithms\NodeData.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
