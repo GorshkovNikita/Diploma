@@ -53,6 +53,16 @@ namespace Diploma.Models.GraphData
         }
 
         /// <summary>
+        /// Для алгоритма A*. Назначает новый текущий узел (узел с наименьшим расстоянием от источника), определяет смежных с ним
+        /// </summary>
+        public void SetCurrentNodeForAstar()
+        {
+            double minLength = this.OpenedNodes.Min(n => (n.LengthFromSource + n.LengthToTarget));
+            this.Current = this.OpenedNodes.Where(n => (n.LengthFromSource + n.LengthToTarget) == minLength).First();
+            this.AdjacentNodes = Graph.GetAllAdjacentNodesInfo(Current.ID);
+        }
+
+        /// <summary>
         /// Назначает новый текущий узел (по ID), определяет смежных с ним
         /// </summary>
         /// <param name="id"></param>

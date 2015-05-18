@@ -25,18 +25,24 @@ function getLatLng(e) {
             map.addLayer(marker);
             layers.push(marker);
         }
-        else
-            alert("Точка не найдена!");
+        else {
+            for (var i = 0; i < layers.length; i++) {
+                map.removeLayer(layers[i]);
+            }
+            alert("Невозможно построить маршрут!");
+        }
         $.getJSON("http://localhost:58377/Home/GetFullPath", function (data) {
             if (data != null) {
-                drawPath(data);
+                drawPath(data.Points);
+                alert(data.RunTime);
             }
         });
     });
 }
 
-function mapClear(e) {
-    map.removeLayer(polyLine);
-    map.removeLayer(marker);
+function clear() {
+    for (var i = 0; i < layers.length; i++) {
+        map.removeLayer(layers[i]);
+    }
 }
 

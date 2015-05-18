@@ -163,6 +163,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\AStar.cs" />
     <Compile Include="Algorithms\DijkstraAlgorithm.cs" />
     <Compile Include="Algorithms\KShortestPathsAlgorithm.cs" />
     <Compile Include="Algorithms\NodeData.cs" />

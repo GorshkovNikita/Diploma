@@ -117,5 +117,6 @@ namespace Diploma.Models
         public List<Point> Points { get; set; }
         public double Length { get; set; }
         public bool IsFull { get; set; }
+        public double RunTime { get; set; }
     }
 }

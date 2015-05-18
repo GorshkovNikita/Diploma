@@ -10,6 +10,7 @@ using Diploma.Models.GraphData;
 using Diploma.Algorithms;
 using Neo4jClient;
 using System.Web.Script.Serialization;
+using System.Diagnostics;
 
 namespace Diploma.Controllers
 {
@@ -48,7 +49,7 @@ namespace Diploma.Controllers
             //graph.CreateIndex();
             //graph.CreateUniqueConstraint();
             //List<long> lst = DBConnection.GetAllIntersectedWayID();
-            Graph.BuildGraph();
+            //Graph.BuildGraph();
             //Graph.CreateRelationshipsOfWay(188511699);
             //Graph.CreateRelationshipsOfWay(23964689);
             //Graph.CreateRelationshipsOfWay(188511699);
@@ -56,38 +57,48 @@ namespace Diploma.Controllers
             //Graph.CreateRelationshipsOfWay(23964689);
             //Graph.CreateRelationshipsOfWay(188511699);
             //Graph.CreateRelationshipsOfWay(23964689);
-            return View(new Path());//lst[index].GetFullPath());
+            CurrentConfig.MarkersNumber = 0;
+            CurrentConfig.Path = null;
+            return View();
         }
 
         public string Nearest(string lat, string lon)
         {
             if (Request.IsAjaxRequest())
             {
-                CurrentConfig.MarkersNumber++;
                 Point point = Graph.GetNearest(new Point(Convert.ToDouble(lat, CultureInfo.InvariantCulture), Convert.ToDouble(lon, CultureInfo.InvariantCulture)));
-                var jsonPoint = new JavaScriptSerializer().Serialize(point);
-                if (CurrentConfig.MarkersNumber == 2)
+                if (point != null)
                 {
-                    CurrentConfig.MarkersNumber = 0;
-                    try
+                    CurrentConfig.MarkersNumber++;
+                    var jsonPoint = new JavaScriptSerializer().Serialize(point);
+                    if (CurrentConfig.MarkersNumber == 2)
                     {
-                        CurrentConfig.Path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
-                        CurrentConfig.PointStartID = 0;
+                        CurrentConfig.MarkersNumber = 0;
+                        try
+                        {
+                            var watch = Stopwatch.StartNew();
+                            CurrentConfig.Path = DijkstraAlgorithm.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
+                            //CurrentConfig.Path = AStar.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
+                            CurrentConfig.PointStartID = 0;
+                            watch.Stop();
+                            var elapsedMs = watch.Elapsed.TotalSeconds;
+                            CurrentConfig.Path.RunTime = elapsedMs;
+                        }
+                        catch
+                        {
+                            CurrentConfig.Path = null;
+                            CurrentConfig.MarkersNumber = 0;
+                            return null;
+                        }
                     }
-                    catch
+                    else if (CurrentConfig.MarkersNumber == 1)
                     {
-                        CurrentConfig.MarkersNumber = 1;
-                        //CurrentConfig.PointStartID = 0;
-                        //return "Невозможно построить маршрут!";
+                        CurrentConfig.Path = null;
+                        CurrentConfig.PointStartID = point.ID;
                     }
-                    
+                    return jsonPoint;
                 }
-                else if (CurrentConfig.MarkersNumber == 1)
-                {
-                    CurrentConfig.Path = null;
-                    CurrentConfig.PointStartID = point.ID;
-                }
-                return jsonPoint;
+                return null;
             }
             else
                 return null;
@@ -97,7 +108,7 @@ namespace Diploma.Controllers
         {
             if (CurrentConfig.Path != null)
             {
-                var jsonPath = new JavaScriptSerializer().Serialize(CurrentConfig.Path.GetFullPath().Points);
+                var jsonPath = new JavaScriptSerializer().Serialize(CurrentConfig.Path.GetFullPath());
                 return jsonPath;
             }
             else

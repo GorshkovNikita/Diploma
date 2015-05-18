@@ -206,8 +206,7 @@ namespace Diploma.Models.GraphData
         /// </summary>
         public static void BuildGraph()
         {
-            // 8942
-            // 6174090
+            // 8998
             List<long> allIDs = DBConnection.GetAllIntersectedWayID();
             allIDs.Sort();
             for (int i = 0; i < allIDs.Count; i++)
@@ -444,25 +443,34 @@ namespace Diploma.Models.GraphData
         /// <returns>Найденная точка</returns>
         public static Point GetNearest(Point point)
         {
-            try
+            Point resPoint;
+            double latLowBound = point.Latitude;
+            double latHighBound = point.Latitude;
+            double lonLowBound = point.Longitude;
+            double lonHighBound = point.Longitude;
+            do
             {
-                double latLowBound = point.Latitude - 0.002;
-                double latHighBound = point.Latitude + 0.002;
-                double lonLowBound = point.Longitude - 0.002;
-                double lonHighBound = point.Longitude + 0.002;
-                return Client.Cypher.Match("(n)")
-                    .Where((Point n) => n.Latitude > latLowBound)
-                    .AndWhere((Point n) => n.Latitude < latHighBound)
-                    .AndWhere((Point n) => n.Longitude > lonLowBound)
-                    .AndWhere((Point n) => n.Longitude < lonHighBound)
-                    .Return(n => n.As<Point>())
-                    .Results
-                    .First();
-            }
-            catch
-            {
-                return null;
-            }
+                latLowBound -= 0.002;
+                latHighBound += 0.002;
+                lonLowBound -= 0.002;
+                lonHighBound += 0.002;
+                try
+                {
+                    resPoint = Client.Cypher.Match("(n)")
+                        .Where((Point n) => n.Latitude > latLowBound)
+                        .AndWhere((Point n) => n.Latitude < latHighBound)
+                        .AndWhere((Point n) => n.Longitude > lonLowBound)
+                        .AndWhere((Point n) => n.Longitude < lonHighBound)
+                        .Return(n => n.As<Point>())
+                        .Results
+                        .First();
+                }
+                catch
+                {
+                    resPoint = null;
+                }
+            } while (resPoint == null);
+            return resPoint;
         }
 
         /// <summary>
