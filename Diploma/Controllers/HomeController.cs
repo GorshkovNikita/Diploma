@@ -77,13 +77,17 @@ namespace Diploma.Controllers
                         try
                         {
                             var watch = Stopwatch.StartNew();
-                            //CurrentConfig.Path = KShortestPaths.RunAlgo(new KShortestGraphIterator(), CurrentConfig.PointStartID, point.ID, 5)[3];
+                            List<Path> lst = KShortestPaths.RunAlgo(new KShortestGraphIterator(), CurrentConfig.PointStartID, point.ID, 15);
+                            // Min - безопасный
+                            // Max - гоночный
+                            double minSafetyFactor = lst.Max(p => p.SafetyFactor);
+                            CurrentConfig.Path = lst.Where(p => p.SafetyFactor == minSafetyFactor).First();
                             //CurrentConfig.Path = Dijkstra.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
-                            CurrentConfig.Path = AStar.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
+                            //CurrentConfig.Path = AStar.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
                             CurrentConfig.PointStartID = 0;
                             watch.Stop();
                             var elapsedMs = watch.Elapsed.TotalSeconds;
-                            CurrentConfig.Path.RunTime = elapsedMs;
+                            CurrentConfig.Path.RunTime = Math.Round(elapsedMs, 4);
                         }
                         catch
                         {

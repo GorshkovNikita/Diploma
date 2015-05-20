@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Diploma.Models;
 using Diploma.Models.GraphData;
+using Diploma.Extended_Classes;
 
 namespace Diploma.Models
 {
@@ -67,6 +68,7 @@ namespace Diploma.Models
                 {
                     Length += Graph.GetLineDataBetweenNodes(this.Points[i - 1].ID, this.Points[i].ID).Length;
                 }
+                Length = Math.Round(Length, 4);
             }
         }
 
@@ -96,6 +98,20 @@ namespace Diploma.Models
         }
 
         /// <summary>
+        /// Получает коэффициент безопасности маршрута
+        /// </summary>
+        /// <returns></returns>
+        public void CalculateFactors()
+        {
+            this.SafetyFactor = 1;
+            for (int i = 1; i < this.Points.Count; i++)
+            {
+                LineData line = Graph.GetLineDataBetweenNodes(this.Points[i - 1].ID, this.Points[i].ID);
+                this.SafetyFactor *= Math.Pow(HighwayFactor.GetFactor(line.RoadType), line.Length / 0.1);
+            }
+        }
+
+        /// <summary>
         /// Проверка на эквивалентность двух путей
         /// </summary>
         /// <param name="path"></param>
@@ -118,5 +134,6 @@ namespace Diploma.Models
         public double Length { get; set; }
         public bool IsFull { get; set; }
         public double RunTime { get; set; }
+        public double SafetyFactor { get; set; }
     }
 }

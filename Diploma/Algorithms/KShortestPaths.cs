@@ -13,7 +13,8 @@ namespace Diploma.Algorithms
         {
             // находим кратчайший
             Path shortestPath = AStar.RunAlgo(new GraphIterator(), source, target);
-            // добавляем егов  список найденных
+            // добавляем его в список найденных
+            shortestPath.CalculateFactors();
             graph.FoundedPaths.Add(shortestPath);
             // цикл по k, то есть пока не найдем K субоптимальных путей
             for (int k = 1; k < K; k++)

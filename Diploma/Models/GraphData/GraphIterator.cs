@@ -138,7 +138,7 @@ namespace Diploma.Models.GraphData
         public Path CreatePath()
         {
             Path path = new Path();
-            path.Length = ClosedNodes.Last().LengthFromSource;
+            path.Length = Math.Round(ClosedNodes.Last().LengthFromSource, 4);
             NodeData nodeData = ClosedNodes.Last();
             path.Points.Insert(0, Graph.GetPoint(nodeData.ID));
             while (nodeData.ParentID != 0)

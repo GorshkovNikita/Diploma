@@ -18,3 +18,10 @@ body {
     width: 1000px;
     margin: auto;
 }
+
+#path_info {
+    display: block;
+    width: 200px;
+    height: 100px;
+    float: left;
+}

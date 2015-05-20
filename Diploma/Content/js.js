@@ -5,7 +5,7 @@
     }
     polyLine = L.polyline(line, { color: 'red' });
     map.addLayer(polyLine);
-    layers.push(polyLine);
+    polylineLayers.push(polyLine);
 }
 
 function displayMap() {
@@ -23,26 +23,36 @@ function getLatLng(e) {
             //map.removeLayer(polyline);
             marker = L.marker(L.latLng(parseFloat(data["Latitude"]), parseFloat(data["Longitude"])));
             map.addLayer(marker);
-            layers.push(marker);
+            markerLayers.push(marker);
         }
         else {
-            for (var i = 0; i < layers.length; i++) {
-                map.removeLayer(layers[i]);
-            }
+            clear();
             alert("Невозможно построить маршрут!");
         }
         $.getJSON("http://localhost:58377/Home/GetFullPath", function (data) {
             if (data != null) {
+                clearPolylines();
                 drawPath(data.Points);
-                alert(data.RunTime);
+                $('#path_info_length').html('Длина маршрута = ' + data.Length + ' м');
+                $('#path_info_time').html('Время построения = ' + data.RunTime + ' с');
             }
         });
     });
 }
 
 function clear() {
-    for (var i = 0; i < layers.length; i++) {
-        map.removeLayer(layers[i]);
+    clearMarkers();
+    clearPolylines();
+}
+
+function clearMarkers() {
+    for (var i = 0; i < markerLayers.length; i++) {
+        map.removeLayer(markerLayers[i]);
     }
 }
 
+function clearPolylines() {
+    for (var i = 0; i < polylineLayers.length; i++) {
+        map.removeLayer(polylineLayers[i]);
+    }
+}

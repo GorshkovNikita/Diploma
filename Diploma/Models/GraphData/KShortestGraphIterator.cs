@@ -41,7 +41,7 @@ namespace Diploma.Models.GraphData
         public Path GetPathWithMinLengthFromPossible()
         {
             double minLength = this.PossiblePaths.Min(p => p.Length);
-            return this.PossiblePaths.Where(p => p.Length == minLength).First();
+            return this.PossiblePaths.Where(p => p.Length == minLength).Single();
         }
 
         /// <summary>
@@ -50,6 +50,7 @@ namespace Diploma.Models.GraphData
         public void MoveFromPossibleToFounded()
         {
             Path pathWithMinLength = this.GetPathWithMinLengthFromPossible();
+            pathWithMinLength.CalculateFactors();
             this.FoundedPaths.Add(pathWithMinLength);
             this.PossiblePaths.Remove(pathWithMinLength);
         }

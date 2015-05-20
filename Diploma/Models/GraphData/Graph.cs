@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Neo4jClient;
+using Diploma.Extended_Classes;
 
 namespace Diploma.Models.GraphData
 {
@@ -445,6 +446,7 @@ namespace Diploma.Models.GraphData
         /// <returns>Найденная точка</returns>
         public static Point GetNearest(Point point)
         {
+            List<Point> resPoints;
             Point resPoint;
             double latLowBound = point.Latitude;
             double latHighBound = point.Latitude;
@@ -458,20 +460,31 @@ namespace Diploma.Models.GraphData
                 lonHighBound += 0.002;
                 try
                 {
-                    resPoint = Client.Cypher.Match("(n)")
+                    resPoints = Client.Cypher.Match("(n)")
                         .Where((Point n) => n.Latitude > latLowBound)
                         .AndWhere((Point n) => n.Latitude < latHighBound)
                         .AndWhere((Point n) => n.Longitude > lonLowBound)
                         .AndWhere((Point n) => n.Longitude < lonHighBound)
                         .Return(n => n.As<Point>())
                         .Results
-                        .First();
+                        .ToList();
                 }
                 catch
                 {
-                    resPoint = null;
+                    resPoints = null;
                 }
-            } while (resPoint == null);
+            } while (resPoints.Count == 0);
+            double minLength = Distance.Calc(new Point(resPoints[0].Latitude, resPoints[0].Longitude), point);
+            resPoint = resPoints[0];
+            for (int i = 1; i < resPoints.Count; i++)
+            {
+                double len = Distance.Calc(new Point(resPoints[i].Latitude, resPoints[i].Longitude), point);
+                if (len < minLength)
+                {
+                    minLength = len;
+                    resPoint = resPoints[i];
+                }
+            }
             return resPoint;
         }
 
