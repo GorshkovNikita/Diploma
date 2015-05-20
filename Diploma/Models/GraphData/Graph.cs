@@ -488,6 +488,14 @@ namespace Diploma.Models.GraphData
             return resPoint;
         }
 
+        public static long GetCountNodes()
+        {
+            return Client.Cypher.Match("(n)")
+                .Return(n => n.Count())
+                .Results
+                .Single();
+        }
+
         /// <summary>
         /// Создает индекс для атрибута узла - ID
         /// </summary>

@@ -40,6 +40,9 @@ namespace Diploma.Models.GraphData
             this.OpenedNodes = new List<NodeData>();
             this.ClosedNodes = new List<NodeData>();
             this.DeletedEdges = new Dictionary<long, long>();
+
+            this.OpenedNodesE = new Dictionary<long, List<NodeData>>();
+            this.ClosedNodesE = new Dictionary<long, List<NodeData>>();
         }
 
         /// <summary>
@@ -195,5 +198,13 @@ namespace Diploma.Models.GraphData
         /// Ребра, которые необходимо игнорировать
         /// </summary>
         public Dictionary<long, long> DeletedEdges { get; set; }
+        /// <summary>
+        /// Список открытых узлов для E близких
+        /// </summary>
+        public Dictionary<long, List<NodeData>> OpenedNodesE { get; set; }
+        /// <summary>
+        /// Список закрытых узлов для E близких
+        /// </summary>
+        public Dictionary<long, List<NodeData>> ClosedNodesE { get; set; }
     }
 }

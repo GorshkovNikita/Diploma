@@ -165,6 +165,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\AStar.cs" />
     <Compile Include="Algorithms\Dijkstra.cs" />
+    <Compile Include="Algorithms\EClosest.cs" />
     <Compile Include="Algorithms\KShortestPaths.cs" />
     <Compile Include="Algorithms\NodeData.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -177,7 +178,10 @@
     <Compile Include="Extended_Classes\SpeedTable.cs" />
     <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Extended_Classes\Distance.cs" />
+    <Compile Include="Models\GraphData\AbstractGraphIterator.cs" />
+    <Compile Include="Models\GraphData\EClosestIterator.cs" />
     <Compile Include="Models\GraphData\GraphIterator.cs" />
+    <Compile Include="Models\GraphData\IGraphIterator.cs" />
     <Compile Include="Models\GraphData\KShortestGraphIterator.cs" />
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\OSMDataClasses.designer.cs">

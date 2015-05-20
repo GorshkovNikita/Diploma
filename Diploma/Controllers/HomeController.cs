@@ -57,6 +57,7 @@ namespace Diploma.Controllers
             //Graph.CreateRelationshipsOfWay(23964689);
             //Graph.CreateRelationshipsOfWay(188511699);
             //Graph.CreateRelationshipsOfWay(23964689);
+            //long i = Graph.GetCountNodes();
             CurrentConfig.MarkersNumber = 0;
             CurrentConfig.Path = null;
             return View();
@@ -77,11 +78,12 @@ namespace Diploma.Controllers
                         try
                         {
                             var watch = Stopwatch.StartNew();
-                            List<Path> lst = KShortestPaths.RunAlgo(new KShortestGraphIterator(), CurrentConfig.PointStartID, point.ID, 15);
+                            CurrentConfig.Path = EClosest.RunAlgo(new EClosestIterator(), CurrentConfig.PointStartID, point.ID, 15);
+                            //List<Path> lst = KShortestPaths.RunAlgo(new KShortestGraphIterator(), CurrentConfig.PointStartID, point.ID, 15);
                             // Min - безопасный
                             // Max - гоночный
-                            double minSafetyFactor = lst.Max(p => p.SafetyFactor);
-                            CurrentConfig.Path = lst.Where(p => p.SafetyFactor == minSafetyFactor).First();
+                            //double minSafetyFactor = lst.Max(p => p.SafetyFactor);
+                            //CurrentConfig.Path = lst.Where(p => p.SafetyFactor == minSafetyFactor).First();
                             //CurrentConfig.Path = Dijkstra.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
                             //CurrentConfig.Path = AStar.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
                             CurrentConfig.PointStartID = 0;
