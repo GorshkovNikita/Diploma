@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="OSM_Data_DB" Class="OSMDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=Никита-ПК;Initial Catalog=OSM_Data_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="OSM_Data_DBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=НИКИТА-ПК;Initial Catalog=OSM_Data_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="OSM_Data_DBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Nodes" Member="Nodes">
     <Type Name="Node">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -47,6 +47,14 @@
   </Table>
   <Table Name="dbo.AllGraphNodes" Member="AllGraphNodes">
     <Type Name="AllGraphNode">
+      <Column Name="Way1" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Way2" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="NodeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RowNum" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChertanovoGraphNodes" Member="ChertanovoGraphNodes">
+    <Type Name="ChertanovoGraphNodes">
       <Column Name="Way1" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Way2" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="NodeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />

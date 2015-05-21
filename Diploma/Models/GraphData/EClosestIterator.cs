@@ -63,8 +63,8 @@ namespace Diploma.Models.GraphData
         public override Path CreatePath()
         {
             Path path = new Path();
-            path.Length = Math.Round(this.ClosedNodes[this.Target][0].LengthFromSource, 4);
-            NodeData nodeData = this.ClosedNodes[this.Target][0];
+            path.Length = Math.Round(this.ClosedNodes[this.Target][1].LengthFromSource, 4);
+            NodeData nodeData = this.ClosedNodes[this.Target][1];
             List<NodeData> l = this.ClosedNodes[this.Target];
             path.Points.Insert(0, Graph.GetPoint(nodeData.ID));
             while (nodeData.ParentID != 0)

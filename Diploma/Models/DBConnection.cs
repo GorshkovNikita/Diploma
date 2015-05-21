@@ -12,9 +12,9 @@ namespace Diploma.Models
         /// </summary>
         /// <param name="id">Id пути (WayID)</param>
         /// <returns>Все пересечения пути</returns>
-        public static List<AllGraphNode> GetAllIntersectionsOfWay(Int64 id)
+        public static List<ChertanovoGraphNodes> GetAllIntersectionsOfWay(Int64 id)
         {
-            return OSMDB.AllGraphNodes.Where(way => (way.Way1 == id || way.Way2 == id)).ToList();
+            return OSMDB.ChertanovoGraphNodes.Where(way => (way.Way1 == id || way.Way2 == id)).ToList();
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace Diploma.Models
         /// <returns>ID всеч унивкальныч путей</returns>
         public static List<long> GetAllIntersectedWayID()
         {
-            return OSMDB.AllGraphNodes.Select(n => n.Way1).Union(OSMDB.AllGraphNodes.Select(n => n.Way2)).ToList();
+            return OSMDB.ChertanovoGraphNodes.Select(n => n.Way1).Union(OSMDB.ChertanovoGraphNodes.Select(n => n.Way2)).ToList();
         }
 
         /// <summary>

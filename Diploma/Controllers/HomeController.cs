@@ -41,7 +41,7 @@ namespace Diploma.Controllers
             //List<Path> lst = KShortestPathsAlgorithm.RunAlgo(new KShortestGraphIterator(), 1939502615, 2086140685, 5);
             //List<NodeDist> node = graph.GetAllAdjacentNodesInfo(2195315963);
             //graph.BuildTestGraph();
-            //graph.BuildGraph();
+            //Graph.BuildGraph();
             //List<long> nodes = graph.GetAllNodesOfIntersectionsOfWay(DBConnection.GetAllIntersectionsOfWay(316207298));
             //List<Line> lst = graph.GetAllLinesFromWay(316207298);
             //List<AllGraphNode> lst = DBConnection.GetAllIntersectionsOfWay(316207298);
@@ -58,6 +58,7 @@ namespace Diploma.Controllers
             //Graph.CreateRelationshipsOfWay(188511699);
             //Graph.CreateRelationshipsOfWay(23964689);
             //long i = Graph.GetCountNodes();
+            //Path path = EClosest.RunAlgo(new EClosestIterator(), 1, 5, 6);
             CurrentConfig.MarkersNumber = 0;
             CurrentConfig.Path = null;
             return View();
@@ -78,14 +79,14 @@ namespace Diploma.Controllers
                         try
                         {
                             var watch = Stopwatch.StartNew();
-                            CurrentConfig.Path = EClosest.RunAlgo(new EClosestIterator(), CurrentConfig.PointStartID, point.ID, 15);
+                            //CurrentConfig.Path = EClosest.RunAlgo(new EClosestIterator(), CurrentConfig.PointStartID, point.ID, 15);
                             //List<Path> lst = KShortestPaths.RunAlgo(new KShortestGraphIterator(), CurrentConfig.PointStartID, point.ID, 15);
                             // Min - безопасный
                             // Max - гоночный
                             //double minSafetyFactor = lst.Max(p => p.SafetyFactor);
                             //CurrentConfig.Path = lst.Where(p => p.SafetyFactor == minSafetyFactor).First();
                             //CurrentConfig.Path = Dijkstra.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
-                            //CurrentConfig.Path = AStar.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
+                            CurrentConfig.Path = AStar.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
                             CurrentConfig.PointStartID = 0;
                             watch.Stop();
                             var elapsedMs = watch.Elapsed.TotalSeconds;

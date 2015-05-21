@@ -23,7 +23,7 @@ namespace Diploma.Algorithms
             });
             //while (graph.Current.ID != target)
             //while (graph.OpenedNodes[target].Max(n => n.LengthFromSource) < E)
-            while (graph.ClosedNodes.Count != 150)// Graph.GetCountNodes())
+            while (graph.ClosedNodes.Count != 5)// Graph.GetCountNodes())
             {
                 for (int i = 0; i < graph.AdjacentNodes.Count; i++)
                 {
@@ -43,7 +43,7 @@ namespace Diploma.Algorithms
                             }
                             else
                             {
-                                graph.UpdateLength(graph.AdjacentNodes[i]);
+                                //graph.UpdateLength(graph.AdjacentNodes[i]);
                                 graph.OpenedNodes[graph.AdjacentNodes[i].ID].Add(new NodeData()
                                 {
                                     ID = graph.AdjacentNodes[i].ID,

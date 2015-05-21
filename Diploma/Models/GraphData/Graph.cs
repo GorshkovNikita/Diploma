@@ -276,7 +276,7 @@ namespace Diploma.Models.GraphData
         /// </summary>
         /// <param name="intersections">Все пересечения пути</param>
         /// <returns>ID точек пересечения на пути</returns>
-        public static List<long> GetAllNodesOfIntersectionsOfWay(List<AllGraphNode> intersections)
+        public static List<long> GetAllNodesOfIntersectionsOfWay(List<ChertanovoGraphNodes> intersections)
         {
             List<long> nodeIDs = new List<long>();
             for (int i = 0; i < intersections.Count; i++)
