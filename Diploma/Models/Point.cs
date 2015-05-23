@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Globalization;
 
 namespace Diploma.Models
 {
@@ -27,6 +28,13 @@ namespace Diploma.Models
             this.Latitude = node.Latitude;
             this.Longitude = node.Longitude;
             this.AddTags(node);
+        }
+
+        public Point(string point)
+        {
+            string[] coords = point.Split(';');
+            this.Latitude = Convert.ToDouble(coords[0], CultureInfo.InvariantCulture);
+            this.Longitude = Convert.ToDouble(coords[1], CultureInfo.InvariantCulture);
         }
 
         public void AddTags(OSMNode node)

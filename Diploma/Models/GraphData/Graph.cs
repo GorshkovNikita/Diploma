@@ -416,6 +416,24 @@ namespace Diploma.Models.GraphData
             }
         }
 
+        public static long GetIdByLatLng(Point point)
+        {
+            try
+            {
+                return Client.Cypher.Match("n")
+                    .Where((Point n) => n.Latitude == point.Latitude)
+                    .AndWhere((Point n) => n.Longitude == point.Longitude)
+                    .Return(n => n.As<Point>())
+                    .Results
+                    .Single()
+                    .ID;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
         /// <summary>
         /// Получает данные о ребре между двумя узлами
         /// </summary>

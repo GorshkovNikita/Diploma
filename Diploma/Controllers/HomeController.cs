@@ -69,7 +69,16 @@ namespace Diploma.Controllers
             if (Request.IsAjaxRequest())
             {
                 Point point = Graph.GetNearest(new Point(Convert.ToDouble(lat, CultureInfo.InvariantCulture), Convert.ToDouble(lon, CultureInfo.InvariantCulture)));
-                if (point != null)
+                CurrentConfig.MarkersNumber++;
+                if (CurrentConfig.MarkersNumber == 1)
+                    point.ID = 1;
+                else if (CurrentConfig.MarkersNumber == 2)
+                {
+                    point.ID = 2;
+                    CurrentConfig.MarkersNumber = 0;
+                }
+                return new JavaScriptSerializer().Serialize(point);
+                /*if (point != null)
                 {
                     CurrentConfig.MarkersNumber++;
                     var jsonPoint = new JavaScriptSerializer().Serialize(point);
@@ -106,7 +115,7 @@ namespace Diploma.Controllers
                     }
                     return jsonPoint;
                 }
-                return null;
+                return null;*/
             }
             else
                 return null;
@@ -121,6 +130,40 @@ namespace Diploma.Controllers
             }
             else
                 return null;
+        }
+
+        [HttpPost]
+        public string RouteRequest(string source_str, string target_str, string route_type, string short_algorithm, string sub_short_algorithm, string ke)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                Point source, target;
+                int KE;
+                try
+                {
+                    source = new Point(source_str);
+                    source.ID = Graph.GetIdByLatLng(source);
+                    target = new Point(target_str);
+                    target.ID = Graph.GetIdByLatLng(target);
+                    KE = Convert.ToInt32(ke);
+                }
+                catch
+                {
+                    return "Неправильно введены данные";
+                }
+                try
+                {
+                    AppRequest req = new AppRequest(source, target, route_type, short_algorithm, sub_short_algorithm, KE);
+                    AppResponse res = req.Response;
+                    var jsonPath = new JavaScriptSerializer().Serialize(res);
+                    return jsonPath;
+                }
+                catch
+                {
+                    return "Невозможно построить маршрут";
+                }
+            }
+            return null;
         }
     }
 }

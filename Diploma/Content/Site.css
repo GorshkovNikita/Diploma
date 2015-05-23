@@ -13,6 +13,16 @@ body {
     padding: 0;
 }
 
+#wrapper {
+    margin: 15px;
+    float: left;
+    width: 300px;
+}
+
+.form_elem {
+    margin: 5px;
+}
+
 #map { 
     height: 900px;
     width: 1000px;
@@ -23,5 +33,5 @@ body {
     display: block;
     width: 200px;
     height: 100px;
-    float: left;
+    clear: both;
 }

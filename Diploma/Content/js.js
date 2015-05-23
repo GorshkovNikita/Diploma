@@ -20,8 +20,13 @@ function displayMap() {
 function getLatLng(e) {
     $.getJSON("http://localhost:58377/Home/Nearest?lat=" + e.latlng.lat + "&lon=" + e.latlng.lng, function (data) {
         if (data != null) {
-            //map.removeLayer(polyline);
             marker = L.marker(L.latLng(parseFloat(data["Latitude"]), parseFloat(data["Longitude"])));
+            if (data["ID"] == "1") {
+                clearMarkers();
+                $('#source_point').val(data["Latitude"] + ';' + data["Longitude"]);
+            }
+            else if (data["ID"] == "2")
+                $('#target_point').val(data["Latitude"] + ';' + data["Longitude"]);
             map.addLayer(marker);
             markerLayers.push(marker);
         }
@@ -29,14 +34,14 @@ function getLatLng(e) {
             clear();
             alert("Невозможно построить маршрут!");
         }
-        $.getJSON("http://localhost:58377/Home/GetFullPath", function (data) {
+        /*$.getJSON("http://localhost:58377/Home/GetFullPath", function (data) {
             if (data != null) {
                 clearPolylines();
                 drawPath(data.Points);
                 $('#path_info_length').html('Длина маршрута = ' + data.Length + ' м');
                 $('#path_info_time').html('Время построения = ' + data.RunTime + ' с');
             }
-        });
+        });*/
     });
 }
 

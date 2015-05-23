@@ -9,10 +9,14 @@ namespace Diploma.Algorithms
 {
     public class KShortestPaths
     {
-        public static List<Path> RunAlgo(KShortestGraphIterator graph, long source, long target, int K)
+        public static List<Path> RunAlgo(KShortestGraphIterator graph, long source, long target, int K, string short_algo)
         {
+            Path shortestPath;
             // находим кратчайший
-            Path shortestPath = AStar.RunAlgo(new GraphIterator(), source, target);
+            if (short_algo == "dijkstra")
+                shortestPath = Dijkstra.RunAlgo(new GraphIterator(), source, target);
+            else
+                shortestPath = AStar.RunAlgo(new GraphIterator(), source, target);
             // добавляем его в список найденных
             shortestPath.CalculateFactors();
             graph.FoundedPaths.Add(shortestPath);
@@ -38,7 +42,10 @@ namespace Diploma.Algorithms
                     Path s;
                     try
                     {
-                        s = AStar.RunAlgo(new GraphIterator(graph.RootNodes, graph.DeletedEdges), subpath.Points[i].ID, target);
+                        if (short_algo == "dijkstra")
+                            s = Dijkstra.RunAlgo(new GraphIterator(graph.RootNodes, graph.DeletedEdges), subpath.Points[i].ID, target);
+                        else
+                            s = AStar.RunAlgo(new GraphIterator(graph.RootNodes, graph.DeletedEdges), subpath.Points[i].ID, target);
                     }
                     catch
                     {
