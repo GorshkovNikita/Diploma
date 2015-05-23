@@ -109,7 +109,7 @@ namespace Diploma.Models.GraphData
         }
 
         /// <summary>
-        /// Удалить текущий элемент из открытого списка и добавить его в открытый
+        /// Удалить текущий элемент из открытого списка и добавить его в закрытый
         /// </summary>
         public void RemoveCurrentFromOpenedNodesAndAddInClosedNodes()
         {
