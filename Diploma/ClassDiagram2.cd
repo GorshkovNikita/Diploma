@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Diploma.Algorithms.AStar" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\AStar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Algorithms.Dijkstra" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\Dijkstra.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Algorithms.EClosest" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAIAAAAAAAAAACAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\EClosest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Algorithms.KShortestPaths" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\KShortestPaths.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Algorithms.NodeData" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAgAAAAAE=</HashCode>
+      <FileName>Algorithms\NodeData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.BundleConfig" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.FilterConfig" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.RouteConfig" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.WebApiConfig" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\WebApiConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.MvcApplication" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Controllers.HomeController" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAEAIAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Extended_Classes.CurrentConfig" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAABAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Extended_Classes\CurrentConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Extended_Classes.Distance" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extended_Classes\Distance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Extended_Classes.HighwayFactor" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBAQAAAEAACAAAAAgAAAAAABAQQAAAAEQEFAqAAAA=</HashCode>
+      <FileName>Extended_Classes\HighwayFactor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Extended_Classes.SpeedTable" Collapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extended_Classes\SpeedTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Extended_Classes.XmlHelper" Collapsed="true">
+    <Position X="16.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAAAIAAAAAQQCAAAAAAAAAAgAAAAAAAAICABAAA=</HashCode>
+      <FileName>Extended_Classes\XmlHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.AppRequest" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAEBAAoAAAAAAAAAAYAACAAAAAQAAAAEAAAA=</HashCode>
+      <FileName>Models\AppRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.AppResponse" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAhAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AppResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.DBConnection" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAIAAQAAAAAAAAAAAAIAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Models\DBConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.Line" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQgAAAAAAGgCREAAAAAAAAAEAAAAIEAAA=</HashCode>
+      <FileName>Models\Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.OSMElement" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAgAAAAAAEAAAAAAAAAEAAAQAAAAACAAA=</HashCode>
+      <FileName>Models\OSMData\OSMElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.OSMNode" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAIAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OSMData\OSMNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.OSMRelation" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OSMData\OSMRelation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.OSMWay" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAEABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OSMData\OSMWay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.OSMDataClassesDataContext" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYgAQAAABAAgCAABAABAAGEICBAIAAAAAgBBgJAAAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.Node" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKAoABADAOAAgCAAQAEcAAGFiCAgEBAAABAAAAAkBAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diploma.Models.NodeTag" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABsAAAFAAAAgAAAQAEEABFBiCAAAAAAABGAAAEMDAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diploma.Models.WayNode" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAoAAABAABYwAAAQAEEADEBiCAAAAAAABQAAAEEBAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diploma.Models.Way" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAgABABACARwAAAQAEEACCBiCAAAAgAABQAAABEAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diploma.Models.WayTag" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABkAAAFAABYwAAAQAEEACBBiCAAAAAAABWAAAAMCAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diploma.Models.AllGraphNode" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAJAAAAAAAAFAACAAABAgAAAAIAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.ChertanovoGraphNodes" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAJAAAAAAAAFAACAAABAgAAAAIAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.Path" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAgAAAgAgAgAAAAAhAAAAAAAAIAAAAMAAAIBA=</HashCode>
+      <FileName>Models\Path.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diploma.Models.Point" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAGAAgAAAAAAIAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Point.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.GraphData.AbstractGraphIterator" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABCIgAAUAQBAAACAQAAQQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GraphData\AbstractGraphIterator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.GraphData.EClosestIterator" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAABAAwgAUAABAAEAAACAQQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GraphData\EClosestIterator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.GraphData.Graph" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAYAAAQAAAAEQAABEAA1AAEAGACAAAAAABAAAEAAQ=</HashCode>
+      <FileName>Models\GraphData\Graph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.GraphData.GraphEdge" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\GraphData\GraphElements.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diploma.Models.GraphData.LineData" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAGACREAAAAAAAAAAAAAAIEAAA=</HashCode>
+      <FileName>Models\GraphData\GraphElements.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.GraphData.NodeDist" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GraphData\GraphElements.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.GraphData.GraphIterator" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAABCIwAAUAQBAAECAQAAQQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GraphData\GraphIterator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Models.GraphData.KShortestGraphIterator" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAB4AAAAACAAAAAAAQAAAAAAAAAAAAAAAAAAEIA=</HashCode>
+      <FileName>Models\GraphData\KShortestGraphIterator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Diploma.Models.GraphData.IGraphIterator" Collapsed="true">
+    <Position X="7.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GraphData\IGraphIterator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Diploma.Models.OSMType" Collapsed="true">
+    <Position X="7.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAgAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OSMData\OSMElement.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

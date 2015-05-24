@@ -10,8 +10,8 @@ namespace Diploma.Models
         public AppResponse(Path path, double run_time)
         {
             this.Path = path.GetFullPath().Points;
-            this.Length = path.Length;
-            this.RunTime = run_time;
+            this.Length = Math.Round(path.Length, 4);
+            this.RunTime = Math.Round(run_time, 4);
         }
 
         public double RunTime { get; private set; }

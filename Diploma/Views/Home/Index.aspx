@@ -11,17 +11,20 @@
             <input id="source_point" name="source_str" class="form_elem" type="text" /><br />
             Конечная точка:<br />
             <input id="target_point" name="target_str" class="form_elem" type="text" /><br />
+            Вид маршрута: <br />
             <select name="route_type" class="form_elem">
                 <option selected value="short">Кратчайший</option>
                 <option value="safe">Безопасный</option>
                 <option value="sport">Спортивный</option>
             </select>
             <br />
+            Алгоритм построения кратчайшего маршрута:<br />
             <select name="short_algorithm" class="form_elem">
                 <option selected value="dijkstra">Алгоритм Дейкстры</option>
                 <option value="astar">Алгоритм A*</option>
             </select>
             <br />
+            Алгоритм построения субоптимальных маршрутов:<br />
             <select name="sub_short_algorithm" class="form_elem">
                 <option selected value="kshort">К кратчайшие</option>
                 <option value="eclosest">E близкие</option>
@@ -58,7 +61,10 @@
                 try
                 {
                     var pathInfo = JSON.parse(data);
+                    clearPolylines();
                     drawPath(pathInfo["Path"]);
+                    $('#path_info_length').html("Длина маршрута = " + pathInfo["Length"]);
+                    $('#path_info_time').html("Время построения = " + pathInfo["RunTime"]);
                 }
                 catch (err)
                 {

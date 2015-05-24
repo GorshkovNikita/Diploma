@@ -58,7 +58,7 @@ namespace Diploma.Controllers
             //Graph.CreateRelationshipsOfWay(188511699);
             //Graph.CreateRelationshipsOfWay(23964689);
             //long i = Graph.GetCountNodes();
-            Path path = EClosest.RunAlgo(new EClosestIterator(), 1, 5, 4);
+            //Path path = EClosest.RunAlgo(new EClosestIterator(), 1, 5, 4);
             //Graph.BuildTestGraphFromWiki();
             CurrentConfig.MarkersNumber = 0;
             CurrentConfig.Path = null;
@@ -79,44 +79,6 @@ namespace Diploma.Controllers
                     CurrentConfig.MarkersNumber = 0;
                 }
                 return new JavaScriptSerializer().Serialize(point);
-                /*if (point != null)
-                {
-                    CurrentConfig.MarkersNumber++;
-                    var jsonPoint = new JavaScriptSerializer().Serialize(point);
-                    if (CurrentConfig.MarkersNumber == 2)
-                    {
-                        CurrentConfig.MarkersNumber = 0;
-                        try
-                        {
-                            var watch = Stopwatch.StartNew();
-                            //CurrentConfig.Path = EClosest.RunAlgo(new EClosestIterator(), CurrentConfig.PointStartID, point.ID, 15);
-                            //List<Path> lst = KShortestPaths.RunAlgo(new KShortestGraphIterator(), CurrentConfig.PointStartID, point.ID, 15);
-                            // Min - безопасный
-                            // Max - гоночный
-                            //double minSafetyFactor = lst.Max(p => p.SafetyFactor);
-                            //CurrentConfig.Path = lst.Where(p => p.SafetyFactor == minSafetyFactor).First();
-                            //CurrentConfig.Path = Dijkstra.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
-                            CurrentConfig.Path = AStar.RunAlgo(new GraphIterator(), CurrentConfig.PointStartID, point.ID);
-                            CurrentConfig.PointStartID = 0;
-                            watch.Stop();
-                            var elapsedMs = watch.Elapsed.TotalSeconds;
-                            CurrentConfig.Path.RunTime = Math.Round(elapsedMs, 4);
-                        }
-                        catch
-                        {
-                            CurrentConfig.Path = null;
-                            CurrentConfig.MarkersNumber = 0;
-                            return null;
-                        }
-                    }
-                    else if (CurrentConfig.MarkersNumber == 1)
-                    {
-                        CurrentConfig.Path = null;
-                        CurrentConfig.PointStartID = point.ID;
-                    }
-                    return jsonPoint;
-                }
-                return null;*/
             }
             else
                 return null;
@@ -139,14 +101,14 @@ namespace Diploma.Controllers
             if (Request.IsAjaxRequest())
             {
                 Point source, target;
-                int KE;
+                double KE;
                 try
                 {
                     source = new Point(source_str);
                     source.ID = Graph.GetIdByLatLng(source);
                     target = new Point(target_str);
                     target.ID = Graph.GetIdByLatLng(target);
-                    KE = Convert.ToInt32(ke);
+                    KE = Convert.ToDouble(ke);
                 }
                 catch
                 {

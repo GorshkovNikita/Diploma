@@ -10,21 +10,32 @@ namespace Diploma.Algorithms
 {
     public class EClosest
     {
-        public static Path RunAlgo(EClosestIterator graph, long source, long target, int E)
+        public static List<Path> RunAlgo(EClosestIterator graph, long source, long target, double E, string shortAlgo)
         {
             graph.SetCurrentNode(source);
             graph.Source = source;
             graph.Target = target;
             graph.OpenedNodes.Add(source, new List<NodeData>());
-            graph.OpenedNodes[source].Add(new NodeData()
+            if (shortAlgo == "dijkstra")
             {
-                ID = graph.Current.ID,
-                LengthFromSource = 0,
-                ParentID = 0
-            });
-            //while (graph.Current.ID != target)
-            while (true)// || (graph.ClosedNodes[target].Max(n => n.LengthFromSource) < E))
-            //while (graph.ClosedNodes.Count != 5)// Graph.GetCountNodes())
+                graph.OpenedNodes[source].Add(new NodeData()
+                {
+                    ID = graph.Current.ID,
+                    LengthFromSource = 0,
+                    ParentID = 0
+                });
+            }
+            else
+            {
+                graph.OpenedNodes[source].Add(new NodeData()
+                {
+                    ID = graph.Current.ID,
+                    LengthFromSource = 0,
+                    LengthToTarget = Distance.Calc(Graph.GetPoint(graph.Current.ID), Graph.GetPoint(target)),
+                    ParentID = 0
+                });
+            }
+            while (true)
             {
                 for (int i = 0; i < graph.AdjacentNodes.Count; i++)
                 {
@@ -35,26 +46,48 @@ namespace Diploma.Algorithms
                             if (!graph.IsOpenedNodeListContainsNode(graph.AdjacentNodes[i].ID))
                             {
                                 graph.OpenedNodes.Add(graph.AdjacentNodes[i].ID, new List<NodeData>());
-                                graph.OpenedNodes[graph.AdjacentNodes[i].ID].Add(new NodeData()
+                                if (shortAlgo == "dijkstra")
                                 {
-                                    ID = graph.AdjacentNodes[i].ID,
-                                    LengthFromSource = graph.AdjacentNodes[i].Length + graph.Current.LengthFromSource,
-                                    ParentID = graph.Current.ID
-                                });
-                            }
-                            else
-                            {
-                                //graph.UpdateLength(graph.AdjacentNodes[i]);
-                                //if (!(graph.OpenedNodes[graph.AdjacentNodes[i].ID].Where(n => n.ParentID == graph.Current.ID).Any()))
-                                //{
                                     graph.OpenedNodes[graph.AdjacentNodes[i].ID].Add(new NodeData()
                                     {
                                         ID = graph.AdjacentNodes[i].ID,
                                         LengthFromSource = graph.AdjacentNodes[i].Length + graph.Current.LengthFromSource,
                                         ParentID = graph.Current.ID
                                     });
-                                    graph.OpenedNodes[graph.AdjacentNodes[i].ID] = graph.OpenedNodes[graph.AdjacentNodes[i].ID].OrderBy(n => n.LengthFromSource).ToList();
-                                //}
+                                }
+                                else
+                                {
+                                    graph.OpenedNodes[graph.AdjacentNodes[i].ID].Add(new NodeData()
+                                    {
+                                        ID = graph.AdjacentNodes[i].ID,
+                                        LengthFromSource = graph.AdjacentNodes[i].Length + graph.Current.LengthFromSource,
+                                        LengthToTarget = Distance.Calc(Graph.GetPoint(graph.AdjacentNodes[i].ID), Graph.GetPoint(target)),
+                                        ParentID = graph.Current.ID
+                                    });
+                                }
+                            }
+                            else
+                            {
+                                if (shortAlgo == "dijkstra")
+                                {
+                                    graph.OpenedNodes[graph.AdjacentNodes[i].ID].Add(new NodeData()
+                                    {
+                                        ID = graph.AdjacentNodes[i].ID,
+                                        LengthFromSource = graph.AdjacentNodes[i].Length + graph.Current.LengthFromSource,
+                                        ParentID = graph.Current.ID
+                                    });
+                                }
+                                else
+                                {
+                                    graph.OpenedNodes[graph.AdjacentNodes[i].ID].Add(new NodeData()
+                                    {
+                                        ID = graph.AdjacentNodes[i].ID,
+                                        LengthFromSource = graph.AdjacentNodes[i].Length + graph.Current.LengthFromSource,
+                                        LengthToTarget = Distance.Calc(Graph.GetPoint(graph.AdjacentNodes[i].ID), Graph.GetPoint(target)),
+                                        ParentID = graph.Current.ID
+                                    });
+                                }
+                                graph.OpenedNodes[graph.AdjacentNodes[i].ID] = graph.OpenedNodes[graph.AdjacentNodes[i].ID].OrderBy(n => n.LengthFromSource).ToList();
                             }
                         }
                     }
@@ -62,7 +95,10 @@ namespace Diploma.Algorithms
                 graph.RemoveCurrentFromOpenedNodesAndAddInClosedNodes();
                 try
                 {
-                    graph.SetCurrentNode();
+                    if (shortAlgo == "dijkstra")
+                        graph.SetCurrentNode();
+                    else
+                        graph.SetCurrentNodeForAStar();
                 }
                 catch
                 {
@@ -74,13 +110,10 @@ namespace Diploma.Algorithms
             _minLength = path.Length;
             _alternatives = new List<Path>();
             GetAllAlternatives(target, new Path(), 0, E, graph);
-            //for (int i = 0; i < _alternatives.Count; i++)
-                //_alternatives[i].CalculateLength();
-            return path;
-            //return new List<Path>();
+            return _alternatives;
         }
 
-        public static void GetAllAlternatives(long nodeID, Path path, double length, int e, EClosestIterator graph)
+        public static void GetAllAlternatives(long nodeID, Path path, double length, double e, EClosestIterator graph)
         {
             if (length > e + _minLength)
                 return;
@@ -99,6 +132,7 @@ namespace Diploma.Algorithms
                     }
                     else
                     {
+                        path.CalculateFactors();
                         Path p = (Path)path.Clone();
                         _alternatives.Add(p);
                     }

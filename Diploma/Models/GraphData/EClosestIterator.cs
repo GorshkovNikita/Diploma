@@ -29,6 +29,14 @@ namespace Diploma.Models.GraphData
             this.AdjacentNodes = Graph.GetAllAdjacentNodesInfo(this.Current.ID);
         }
 
+        public void SetCurrentNodeForAStar()
+        {
+            double[] minlengths = this.ClosedNodes.Select(n => (n.Value[0].LengthFromSource + n.Value[0].LengthToTarget)).ToArray();
+            double minLength = this.OpenedNodes.Values.Where(n => !(minlengths.Contains(n[0].LengthFromSource + n[0].LengthToTarget))).Min(v => (v[0].LengthFromSource + v[0].LengthToTarget));
+            this.Current = this.OpenedNodes.Where(nd => (nd.Value[0].LengthFromSource + nd.Value[0].LengthToTarget) == minLength).First().Value[0];
+            this.AdjacentNodes = Graph.GetAllAdjacentNodesInfo(this.Current.ID);
+        }
+
         public override bool IsClosedNodeListContainsNode(long node)
         {
             if (this.ClosedNodes.ContainsKey(node))

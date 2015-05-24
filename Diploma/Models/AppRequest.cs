@@ -10,7 +10,7 @@ namespace Diploma.Models
 {
     public class AppRequest
     {
-        public AppRequest(Point source, Point target, string route_type, string short_algorithm, string sub_short_algorithm, int ke)
+        public AppRequest(Point source, Point target, string route_type, string short_algorithm, string sub_short_algorithm, double ke)
         {
             _source = source;
             _target = target;
@@ -35,14 +35,12 @@ namespace Diploma.Models
             }
             else
             {
-                List<Path> paths;
+                List<Path> paths = new List<Path>();
                 if (_subShortAlgorithm == "kshort")
-                    paths = KShortestPaths.RunAlgo(new KShortestGraphIterator(), _source.ID, _target.ID, _KE, _shortAlgorithm);
+                    paths = KShortestPaths.RunAlgo(new KShortestGraphIterator(), _source.ID, _target.ID, Convert.ToInt32(_KE), _shortAlgorithm);
                 else
-                    _resultPath = EClosest.RunAlgo(new EClosestIterator(), _source.ID, _target.ID, _KE);
-                paths = new List<Path>();
-                //else if (_subShortAlgorithm == "eclosest")
-                /*if (_routeType == "safe")
+                    paths = EClosest.RunAlgo(new EClosestIterator(), _source.ID, _target.ID, _KE, _shortAlgorithm);
+                if (_routeType == "safe")
                 {
                     double minSafetyFactor = paths.Min(p => p.SafetyFactor);
                     _resultPath = paths.Where(p => p.SafetyFactor == minSafetyFactor).First();
@@ -53,7 +51,7 @@ namespace Diploma.Models
                     double maxSafetyFactor = paths.Max(p => p.SafetyFactor);
                     _resultPath = paths.Where(p => p.SafetyFactor == maxSafetyFactor).First();
                     _resultPath.CalculateLength();
-                }*/
+                }
             }
             watch.Stop();
             var elapsedMs = watch.Elapsed.TotalSeconds;
@@ -68,6 +66,6 @@ namespace Diploma.Models
         private string _subShortAlgorithm;
         private Path _resultPath;
         private double _runTime;
-        private int _KE;
+        private double _KE;
     }
 }
