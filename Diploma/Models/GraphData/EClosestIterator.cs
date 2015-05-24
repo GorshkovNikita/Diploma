@@ -18,11 +18,13 @@ namespace Diploma.Models.GraphData
             this.Current = null;
             this.Parent = null;
             this.AdjacentNodes = null;
+            this.Visited = new List<long>();
         }
 
         public override void SetCurrentNode()
         {
-            double minLength = this.OpenedNodes.Values.Min(v => v[0].LengthFromSource);
+            double[] minlengths = this.ClosedNodes.Select(n => n.Value[0].LengthFromSource).ToArray();
+            double minLength = this.OpenedNodes.Values.Where(n => !(minlengths.Contains(n[0].LengthFromSource))).Min(v => (v[0].LengthFromSource));
             this.Current = this.OpenedNodes.Where(nd => nd.Value[0].LengthFromSource == minLength).First().Value[0];
             this.AdjacentNodes = Graph.GetAllAdjacentNodesInfo(this.Current.ID);
         }
@@ -46,8 +48,9 @@ namespace Diploma.Models.GraphData
         public override void RemoveCurrentFromOpenedNodesAndAddInClosedNodes()
         {
             KeyValuePair<long, List<NodeData>> pair = this.OpenedNodes.Where(n => n.Key == this.Current.ID).First();
-            this.OpenedNodes.Remove(this.Current.ID);
-            this.ClosedNodes.Add(pair.Key, pair.Value);
+            this.Visited.Add(pair.Key);
+            if (!(this.ClosedNodes.ContainsKey(pair.Key)))
+                this.ClosedNodes.Add(pair.Key, pair.Value);
         }
 
         public override void UpdateLength(NodeDist node)
@@ -63,23 +66,27 @@ namespace Diploma.Models.GraphData
         public override Path CreatePath()
         {
             Path path = new Path();
-            path.Length = Math.Round(this.ClosedNodes[this.Target][1].LengthFromSource, 4);
-            NodeData nodeData = this.ClosedNodes[this.Target][1];
-            List<NodeData> l = this.ClosedNodes[this.Target];
+            path.Length = Math.Round(this.OpenedNodes[this.Target][0].LengthFromSource, 4);
+            NodeData nodeData = this.OpenedNodes[this.Target][0];
+            List<NodeData> l = this.OpenedNodes[this.Target];
             path.Points.Insert(0, Graph.GetPoint(nodeData.ID));
             while (nodeData.ParentID != 0)
             {
                 path.Points.Insert(0, Graph.GetPoint(nodeData.ParentID));
-                nodeData = this.ClosedNodes.Where(n => n.Key == nodeData.ParentID).First().Value[0];
+                nodeData = this.OpenedNodes.Where(n => n.Key == nodeData.ParentID).First().Value[0];
             }
             //path.CalculateLength();
             return path;
         }
 
+        //public Path CreatePa
+
         /// <summary>
         /// Список закрытых узлов для E близких
         /// </summary>
         public Dictionary<long, List<NodeData>> ClosedNodes { get; set; }
+
+        public List<long> Visited { get; set; }
 
         /// <summary>
         /// Список открытых узлов для E близких

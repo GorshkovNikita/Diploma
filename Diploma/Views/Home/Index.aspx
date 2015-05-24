@@ -23,7 +23,8 @@
             </select>
             <br />
             <select name="sub_short_algorithm" class="form_elem">
-                <option selected value="kshort">К близких</option>
+                <option selected value="kshort">К кратчайшие</option>
+                <option value="eclosest">E близкие</option>
             </select>
             <br />
             Количество субоптимальных (K)/отклонение от оптимального (E):

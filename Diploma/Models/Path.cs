@@ -8,7 +8,7 @@ using Diploma.Extended_Classes;
 
 namespace Diploma.Models
 {
-    public class Path //: IEquatable<Path>
+    public class Path : ICloneable//: IEquatable<Path>
     {
         public Path()
         {
@@ -128,6 +128,17 @@ namespace Diploma.Models
                 return true;
             }
             return false;
+        }
+
+        public object Clone()
+        {
+            Path path = new Path();
+            path.Points = this.Points.ToList();
+            path.Length = this.Length;
+            path.IsFull = this.IsFull;
+            path.RunTime = this.RunTime;
+            path.SafetyFactor = this.SafetyFactor;
+            return path;
         }
 
         public List<Point> Points { get; set; }

@@ -39,9 +39,10 @@ namespace Diploma.Models
                 if (_subShortAlgorithm == "kshort")
                     paths = KShortestPaths.RunAlgo(new KShortestGraphIterator(), _source.ID, _target.ID, _KE, _shortAlgorithm);
                 else
-                    paths = new List<Path>();
+                    _resultPath = EClosest.RunAlgo(new EClosestIterator(), _source.ID, _target.ID, _KE);
+                paths = new List<Path>();
                 //else if (_subShortAlgorithm == "eclosest")
-                if (_routeType == "safe")
+                /*if (_routeType == "safe")
                 {
                     double minSafetyFactor = paths.Min(p => p.SafetyFactor);
                     _resultPath = paths.Where(p => p.SafetyFactor == minSafetyFactor).First();
@@ -52,7 +53,7 @@ namespace Diploma.Models
                     double maxSafetyFactor = paths.Max(p => p.SafetyFactor);
                     _resultPath = paths.Where(p => p.SafetyFactor == maxSafetyFactor).First();
                     _resultPath.CalculateLength();
-                }
+                }*/
             }
             watch.Stop();
             var elapsedMs = watch.Elapsed.TotalSeconds;

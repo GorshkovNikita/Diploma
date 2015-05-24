@@ -58,7 +58,8 @@ namespace Diploma.Controllers
             //Graph.CreateRelationshipsOfWay(188511699);
             //Graph.CreateRelationshipsOfWay(23964689);
             //long i = Graph.GetCountNodes();
-            //Path path = EClosest.RunAlgo(new EClosestIterator(), 1, 5, 6);
+            Path path = EClosest.RunAlgo(new EClosestIterator(), 1, 5, 4);
+            //Graph.BuildTestGraphFromWiki();
             CurrentConfig.MarkersNumber = 0;
             CurrentConfig.Path = null;
             return View();
