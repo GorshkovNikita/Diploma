@@ -478,6 +478,7 @@ namespace Diploma.Models.GraphData
                 lonHighBound += 0.002;
                 try
                 {
+                    _client = Client;
                     resPoints = Client.Cypher.Match("(n)")
                         .Where((Point n) => n.Latitude > latLowBound)
                         .AndWhere((Point n) => n.Latitude < latHighBound)
