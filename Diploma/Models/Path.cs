@@ -37,6 +37,7 @@ namespace Diploma.Models
             this.Points = new List<Point>();
             this.Length = 0;
             this.IsFull = false;
+            this.SafetyFactor = 0;
         }
 
         /// <summary>

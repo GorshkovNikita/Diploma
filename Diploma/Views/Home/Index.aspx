@@ -8,9 +8,9 @@
     <div id="wrapper">
         <form id="route_request_form" method="post">
             Начальная точка:<br />
-            <input id="source_point" name="source_str" class="form_elem" type="text" /><br />
+            <input id="source_point" name="source_str" class="form_elem" type="text" readonly /><br />
             Конечная точка:<br />
-            <input id="target_point" name="target_str" class="form_elem" type="text" /><br />
+            <input id="target_point" name="target_str" class="form_elem" type="text" readonly /><br />
             Вид маршрута: <br />
             <select name="route_type" class="form_elem">
                 <option selected value="short">Кратчайший</option>
@@ -43,6 +43,9 @@
             <p id="path_info_time">
             
             </p>
+            <p id="path_info_safty">
+
+            </p>
             <!--<button id="clear_button" value="Очистить карту">Очистить</button>-->
         </div>
     </div>
@@ -63,8 +66,10 @@
                     var pathInfo = JSON.parse(data);
                     clearPolylines();
                     drawPath(pathInfo["Path"]);
-                    $('#path_info_length').html("Длина маршрута = " + pathInfo["Length"]);
-                    $('#path_info_time').html("Время построения = " + pathInfo["RunTime"]);
+                    $('#path_info_length').html("Длина маршрута = " + pathInfo["Length"] + " км");
+                    $('#path_info_time').html("Время построения = " + pathInfo["RunTime"] + " с");
+                    if (pathInfo["SafetyFactor"] != "0")
+                        $('#path_info_safty').html("Мера безопасности = " + pathInfo["SafetyFactor"]);
                 }
                 catch (err)
                 {

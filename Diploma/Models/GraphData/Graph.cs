@@ -478,7 +478,7 @@ namespace Diploma.Models.GraphData
                 lonHighBound += 0.002;
                 try
                 {
-                    _client = Client;
+                    //_client = Client;
                     resPoints = Client.Cypher.Match("(n)")
                         .Where((Point n) => n.Latitude > latLowBound)
                         .AndWhere((Point n) => n.Latitude < latHighBound)
@@ -541,7 +541,7 @@ namespace Diploma.Models.GraphData
             {
                 if (_client == null)
                 {
-                    _client = new GraphClient(new Uri("http://localhost:7474/db/data"));
+                    _client = new GraphClient(new Uri("http://veloroutesneo4jdb.cloudapp.net:7474/db/data"));
                     _client.Connect();
                     return _client;
                 }
