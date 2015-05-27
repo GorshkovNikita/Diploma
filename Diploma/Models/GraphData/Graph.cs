@@ -535,13 +535,19 @@ namespace Diploma.Models.GraphData
                 .ExecuteWithoutResults();
         }
 
+        public static void Connect()
+        {
+            _client = new GraphClient(new Uri("http://localhost:7474/db/data"));
+            _client.Connect();
+        }
+
         public static GraphClient Client
         {
             get
             {
                 if (_client == null)
                 {
-                    _client = new GraphClient(new Uri("http://veloroutesneo4jdb.cloudapp.net:7474/db/data"));
+                    _client = new GraphClient(new Uri("http://localhost:7474/db/data"));
                     _client.Connect();
                     return _client;
                 }

@@ -7,10 +7,12 @@
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
     <div id="wrapper">
         <form id="route_request_form" method="post">
-            Начальная точка:<br />
-            <input id="source_point" name="source_str" class="form_elem" type="text" readonly /><br />
-            Конечная точка:<br />
-            <input id="target_point" name="target_str" class="form_elem" type="text" readonly /><br />
+            Точки маршрута:
+            <div id="points_block">
+                <input name="points" class="form_elem way_point" type="text" readonly /><br />
+                <input name="points" class="form_elem way_point" type="text" readonly /><br />
+            </div>
+            <div id="add_point" class="form_elem">Добавить точку</div><br />
             Вид маршрута: <br />
             <select name="route_type" class="form_elem">
                 <option selected value="short">Кратчайший</option>
@@ -61,8 +63,7 @@
             url: '/Home/RouteRequest',
             type: 'post',
             success: function (data) {
-                try
-                {
+                try {
                     var pathInfo = JSON.parse(data);
                     clearPolylines();
                     drawPath(pathInfo["Path"]);
@@ -71,14 +72,13 @@
                     if (pathInfo["SafetyFactor"] != "0")
                         $('#path_info_safty').html("Мера безопасности = " + pathInfo["SafetyFactor"]);
                 }
-                catch (err)
-                {
+                catch (err) {
                     alert(data);
-                }                    
+                }
             }
         });
-        $('#clear_button').on('click', clear);
-        //var array =  //serializer.Serialize(Model.Points) %>;
-        //drawPath(array);
+        $('#route_request_form').on('click', clearPolylines);
+        $('#add_point').on('click', addPoint);
+        //$('.delete_point').on('click', deletePoint);
     </script>
 </asp:Content>

@@ -23,15 +23,15 @@ function getLatLng(e) {
             marker = L.marker(L.latLng(parseFloat(data["Latitude"]), parseFloat(data["Longitude"])));
             if (data["ID"] == "1") {
                 clearMarkers();
-                $('#source_point').val(data["Latitude"] + ';' + data["Longitude"]);
+                $('.way_point').first().val(data["Latitude"] + ';' + data["Longitude"]);
             }
             else if (data["ID"] == "2")
-                $('#target_point').val(data["Latitude"] + ';' + data["Longitude"]);
+                $('.way_point').last().val(data["Latitude"] + ';' + data["Longitude"]);
             map.addLayer(marker);
             markerLayers.push(marker);
         }
         else {
-            clear();
+            clearMap();
             alert("Невозможно построить маршрут!");
         }
         /*$.getJSON("http://localhost:58377/Home/GetFullPath", function (data) {
@@ -45,9 +45,10 @@ function getLatLng(e) {
     });
 }
 
-function clear() {
+function clearMap() {
     clearMarkers();
     clearPolylines();
+    $('#route_request_form').trigger('reset');
 }
 
 function clearMarkers() {
@@ -60,4 +61,17 @@ function clearPolylines() {
     for (var i = 0; i < polylineLayers.length; i++) {
         map.removeLayer(polylineLayers[i]);
     }
+}
+
+function addPoint() {
+    clearMap();
+    $('#points_block').append('<input id="target_point" name="points" class="form_elem way_point" type="text" readonly /><div class="delete_point" onclick="deletePoint()" class="form_elem">Удалить точку</div><br />');
+    $.get('Home/IncPointsCount');
+}
+
+function deletePoint() {
+    $('#points_block').children().last().remove();
+    $('#points_block').children().last().remove();
+    $('#points_block').children().last().remove();
+    $.get('Home/DecPointsCount');
 }

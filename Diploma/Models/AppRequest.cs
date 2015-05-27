@@ -10,10 +10,11 @@ namespace Diploma.Models
 {
     public class AppRequest
     {
-        public AppRequest(Point source, Point target, string route_type, string short_algorithm, string sub_short_algorithm, double ke)
+        public AppRequest(List<Point> points, string route_type, string short_algorithm, string sub_short_algorithm, double ke)
         {
-            _source = source;
-            _target = target;
+            _source = points.First();
+            _target = points.Last();
+            _intermediates = points;
             _routeType = route_type;
             _shortAlgorithm = short_algorithm;
             _subShortAlgorithm = sub_short_algorithm;
@@ -61,6 +62,7 @@ namespace Diploma.Models
         public AppResponse Response { get; private set; }
         private Point _source;
         private Point _target;
+        private List<Point> _intermediates;
         private string _routeType;
         private string _shortAlgorithm;
         private string _subShortAlgorithm;
