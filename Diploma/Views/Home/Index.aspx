@@ -20,6 +20,12 @@
                 <option value="sport">Спортивный</option>
             </select>
             <br />
+            Вид траектории: <br />
+            <select name="trajectory_type" class="form_elem">
+                <option selected value="open">Разомкнутый</option>
+                <option value="close">Замкнутый</option>
+            </select>
+            <br />
             Алгоритм построения кратчайшего маршрута:<br />
             <select name="short_algorithm" class="form_elem">
                 <option selected value="dijkstra">Алгоритм Дейкстры</option>

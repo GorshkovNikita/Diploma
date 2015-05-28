@@ -22,11 +22,9 @@ function getLatLng(e) {
         if (data != null) {
             marker = L.marker(L.latLng(parseFloat(data["Latitude"]), parseFloat(data["Longitude"])));
             if (data["ID"] == "1") {
-                clearMarkers();
-                $('.way_point').first().val(data["Latitude"] + ';' + data["Longitude"]);
+                clearAll();
             }
-            else if (data["ID"] == "2")
-                $('.way_point').last().val(data["Latitude"] + ';' + data["Longitude"]);
+            $('.way_point').eq(parseInt(data["ID"])-1).val(data["Latitude"] + ';' + data["Longitude"]);
             map.addLayer(marker);
             markerLayers.push(marker);
         }
@@ -34,21 +32,27 @@ function getLatLng(e) {
             clearMap();
             alert("Невозможно построить маршрут!");
         }
-        /*$.getJSON("http://localhost:58377/Home/GetFullPath", function (data) {
-            if (data != null) {
-                clearPolylines();
-                drawPath(data.Points);
-                $('#path_info_length').html('Длина маршрута = ' + data.Length + ' м');
-                $('#path_info_time').html('Время построения = ' + data.RunTime + ' с');
-            }
-        });*/
     });
+}
+
+function clearAll() {
+    clearMarkers();
+    clearPolylines();
+    resetForm();
+    resetConfig();
 }
 
 function clearMap() {
     clearMarkers();
     clearPolylines();
+}
+
+function resetForm() {
     $('#route_request_form').trigger('reset');
+}
+
+function resetConfig() {
+    $('Home/ResetCurrentConfig');
 }
 
 function clearMarkers() {
@@ -65,11 +69,14 @@ function clearPolylines() {
 
 function addPoint() {
     clearMap();
+    resetForm();
     $('#points_block').append('<input id="target_point" name="points" class="form_elem way_point" type="text" readonly /><div class="delete_point" onclick="deletePoint()" class="form_elem">Удалить точку</div><br />');
     $.get('Home/IncPointsCount');
 }
 
 function deletePoint() {
+    clearMap();
+    resetForm();
     $('#points_block').children().last().remove();
     $('#points_block').children().last().remove();
     $('#points_block').children().last().remove();

@@ -20,7 +20,7 @@ namespace Diploma.Controllers
         {
             Graph.Connect();
             CurrentConfig.MarkersNumber = 0;
-            CurrentConfig.PointsCount = 0;
+            CurrentConfig.PointsCount = 2;
             return View();
         }
 
@@ -30,13 +30,9 @@ namespace Diploma.Controllers
             {
                 Point point = Graph.GetNearest(new Point(Convert.ToDouble(lat, CultureInfo.InvariantCulture), Convert.ToDouble(lon, CultureInfo.InvariantCulture)));
                 CurrentConfig.MarkersNumber++;
-                if (CurrentConfig.MarkersNumber == 1)
-                    point.ID = 1;
-                else if (CurrentConfig.MarkersNumber == 2)
-                {
-                    point.ID = 2;
+                point.ID = CurrentConfig.MarkersNumber;
+                if (CurrentConfig.MarkersNumber == CurrentConfig.PointsCount)
                     CurrentConfig.MarkersNumber = 0;
-                }
                 return new JavaScriptSerializer().Serialize(point);
             }
             else
@@ -55,7 +51,7 @@ namespace Diploma.Controllers
         }
 
         [HttpPost]
-        public string RouteRequest(string[] points, string route_type, string short_algorithm, string sub_short_algorithm, string ke)
+        public string RouteRequest(string[] points, string route_type, string trajectory_type, string short_algorithm, string sub_short_algorithm, string ke)
         {
             if (Request.IsAjaxRequest())
             {
@@ -77,7 +73,7 @@ namespace Diploma.Controllers
                 }
                 try
                 {
-                    AppRequest req = new AppRequest(way_points, route_type, short_algorithm, sub_short_algorithm, KE);
+                    AppRequest req = new AppRequest(way_points, route_type, trajectory_type, short_algorithm, sub_short_algorithm, KE);
                     AppResponse res = req.Response;
                     var jsonPath = new JavaScriptSerializer().Serialize(res);
                     return jsonPath;
@@ -94,6 +90,7 @@ namespace Diploma.Controllers
         {
             if (Request.IsAjaxRequest())
             {
+                CurrentConfig.MarkersNumber = 0;
                 CurrentConfig.PointsCount++;
             }
         }
@@ -102,6 +99,7 @@ namespace Diploma.Controllers
         {
             if (Request.IsAjaxRequest())
             {
+                CurrentConfig.MarkersNumber = 0;
                 CurrentConfig.PointsCount--;
             }
         }
@@ -110,7 +108,7 @@ namespace Diploma.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                CurrentConfig.PointsCount = 0;
+                CurrentConfig.PointsCount = 2;
                 CurrentConfig.MarkersNumber = 0;
             }
         }

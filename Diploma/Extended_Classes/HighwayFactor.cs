@@ -15,7 +15,7 @@ namespace Diploma.Extended_Classes
                 return Primary;
             else if (highwayTagName == "secondary")
                 return Secondary;
-            else if (highwayTagName == "teritary")
+            else if (highwayTagName == "tertiary")
                 return Teritary;
             else if (highwayTagName == "unclassified")
                 return Unclassified;

@@ -170,6 +170,7 @@
     <Compile Include="Algorithms\AStar.cs" />
     <Compile Include="Algorithms\Dijkstra.cs" />
     <Compile Include="Algorithms\EClosest.cs" />
+    <Compile Include="Algorithms\Greedy.cs" />
     <Compile Include="Algorithms\KShortestPaths.cs" />
     <Compile Include="Algorithms\NodeData.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
