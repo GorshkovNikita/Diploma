@@ -8,9 +8,9 @@ using Diploma.Extended_Classes;
 
 namespace Diploma.Algorithms
 {
-    public class AStar
+    public class AStar : Algorithm
     {
-        public static Path RunAlgo(GraphIterator graph, long source, long target)
+        public static new Path RunAlgo(GraphIterator graph, long source, long target)
         {
             graph.SetCurrentNode(source);
             graph.OpenedNodes.Add(

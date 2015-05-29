@@ -167,6 +167,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Algorithm.cs" />
     <Compile Include="Algorithms\AStar.cs" />
     <Compile Include="Algorithms\Dijkstra.cs" />
     <Compile Include="Algorithms\EClosest.cs" />

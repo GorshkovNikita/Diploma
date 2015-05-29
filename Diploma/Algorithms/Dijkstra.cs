@@ -7,9 +7,9 @@ using Diploma.Models.GraphData;
 
 namespace Diploma.Algorithms
 {
-    public class Dijkstra
+    public class Dijkstra : Algorithm
     {
-        public static Path RunAlgo(GraphIterator graph, long source, long target)
+        public static new Path RunAlgo(GraphIterator graph, long source, long target)
         {
             graph.SetCurrentNode(source);
             graph.OpenedNodes.Add(
