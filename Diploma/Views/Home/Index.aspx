@@ -28,14 +28,14 @@
             <br />
             Алгоритм построения кратчайшего маршрута:<br />
             <select name="short_algorithm" class="form_elem">
-                <option selected value="dijkstra">Алгоритм Дейкстры</option>
-                <option value="astar">Алгоритм A*</option>
+                <option selected value="astar">Алгоритм A*</option>
+                <option value="dijkstra">Алгоритм Дейкстры</option>
             </select>
             <br />
             Алгоритм построения субоптимальных маршрутов:<br />
             <select name="sub_short_algorithm" class="form_elem">
-                <option selected value="kshort">К кратчайшие</option>
                 <option value="eclosest">E близкие</option>
+                <option selected value="kshort">К кратчайшие</option>
             </select>
             <br />
             Количество субоптимальных (K)/отклонение от оптимального (E):
