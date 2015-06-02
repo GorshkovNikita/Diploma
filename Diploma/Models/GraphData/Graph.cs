@@ -537,7 +537,7 @@ namespace Diploma.Models.GraphData
 
         public static void Connect()
         {
-            _client = new GraphClient(new Uri("http://localhost:7474/db/data"));
+            _client = new GraphClient(new Uri("http://veloroutesneo4jdb.cloudapp.net:7474/db/data"));
             _client.Connect();
         }
 
@@ -547,7 +547,7 @@ namespace Diploma.Models.GraphData
             {
                 if (_client == null)
                 {
-                    _client = new GraphClient(new Uri("http://localhost:7474/db/data"));
+                    _client = new GraphClient(new Uri("http://veloroutesneo4jdb.cloudapp.net:7474/db/data"));
                     _client.Connect();
                     return _client;
                 }
